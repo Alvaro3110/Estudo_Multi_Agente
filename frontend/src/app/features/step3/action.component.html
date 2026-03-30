@@ -1,0 +1,61 @@
+<app-header></app-header>
+<app-stepper [currentStep]="3"></app-stepper>
+<app-context-bar></app-context-bar>
+
+<div class="sub-header" *ngIf="dept$ | async as dept">
+  <div class="left">
+    <div class="context-label">
+      <span class="label">CONTEXTO DA CARTEIRA:</span>
+      <span class="value">VAREJO DIGITAL SP / CORPORATE CENTER</span>
+    </div>
+    <div class="dept-info">
+      <div class="icon-circle">
+        <svg *ngIf="dept.iconType === 'financeiro'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        <svg *ngIf="dept.iconType === 'rh'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <svg *ngIf="dept.iconType === 'logistica'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        <svg *ngIf="dept.iconType === 'tech'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+      </div>
+      <span class="name">{{ dept.name }}</span>
+      <span class="count">· 5 ações recomendadas pelos agentes</span>
+    </div>
+  </div>
+
+  <div class="right" *ngIf="summary$ | async as s">
+    <div class="prio-pill high"><span>{{ s.high }}</span> urgentes</div>
+    <div class="prio-pill medium"><span>{{ s.medium }}</span> moderadas</div>
+    <div class="prio-pill low"><span>{{ s.low }}</span> baixa prioridade</div>
+  </div>
+</div>
+
+<main class="page-container">
+  <div class="section-title">AÇÕES RECOMENDADAS · APROVAR, DELEGAR OU DISPENSAR CADA ITEM</div>
+
+  <div class="action-list">
+    <app-action-card 
+      *ngFor="let item of actionItemsWithDecisions$ | async" 
+      [item]="item"
+      (decided)="onDecided($event)">
+    </app-action-card>
+  </div>
+</main>
+
+<div class="footer-bar" *ngIf="summary$ | async as s">
+  <div class="status-info">
+    <ng-container *ngIf="s.pending > 0">
+      Decida sobre <strong>{{ s.pending }}</strong> ações para concluir
+    </ng-container>
+    <ng-container *ngIf="s.pending === 0">
+      <span class="approved">{{ s.approved }} aprovadas</span> · 
+      <span class="delegated">{{ s.delegated }} delegadas</span> · 
+      <span class="dismissed">{{ s.dismissed }} dispensadas</span>
+    </ng-container>
+  </div>
+  <button class="concluir-btn" [disabled]="s.pending > 0" (click)="concluir()">
+    Concluir e registrar →
+  </button>
+</div>
+
+<div class="success-toast" *ngIf="showToast">
+  <span class="icon">✓</span>
+  Ações registradas com sucesso
+</div>

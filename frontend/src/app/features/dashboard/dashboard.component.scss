@@ -1,0 +1,46 @@
+.page-wrapper {
+  background: white;
+  min-height: 100vh;
+}
+
+.content-limit {
+  max-width: 900px; /* Alinhado com a largura da imagem */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.persona-context {
+  margin-bottom: 16px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  gap: 8px;
+  
+  .context-value {
+    color: #EC0000;
+    background: #FEEEEE;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.agents-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .agents-detail-grid { grid-template-columns: 1fr; }
+}

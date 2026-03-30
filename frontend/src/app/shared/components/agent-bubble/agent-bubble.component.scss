@@ -1,0 +1,395 @@
+.report {
+  background: #fff;
+  border: 0.5px solid #E0E0E0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.rh {
+  padding: 14px 18px;
+  border-bottom: 0.5px solid #F0F0F0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rh-ava {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Cor do ícone caso seja fonte */
+}
+
+.rh-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.rh-name {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.rh-time {
+  font-size: 10px;
+  color: #CCC;
+  margin-left: 6px;
+  font-weight: 400;
+}
+
+.rh-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1A1A1A;
+  margin-top: 2px;
+}
+
+.badge {
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  margin-left: auto;
+}
+
+.badge-ok {
+  background: #E8F5E9;
+  color: #1B5E20;
+  border: 0.5px solid #A5D6A7;
+}
+
+.badge-empty {
+  background: #FFF8E1;
+  color: #E65100;
+  border: 0.5px solid #FFE082;
+}
+
+.badge-err {
+  background: #FEF0F0;
+  color: #B30000;
+  border: 0.5px solid #FBBCBC;
+}
+
+.narrative {
+  padding: 14px 18px;
+  font-size: 13px;
+  color: #444;
+  line-height: 1.7;
+}
+
+.section-title {
+  font-size: 10px;
+  font-weight: 500;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 12px 18px 8px;
+}
+
+.tbl-wrap {
+  padding: 0 18px 14px;
+  overflow-x: auto;
+}
+
+.data-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  
+  th {
+    padding: 7px 10px;
+    background: #F9F9F9;
+    color: #888;
+    font-size: 10px;
+    font-weight: 500;
+    border-bottom: 0.5px solid #EBEBEB;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    text-align: left;
+  }
+  
+  td {
+    padding: 8px 10px;
+    border-bottom: 0.5px solid #F5F5F5;
+    color: #333;
+  }
+  
+  tr:hover td {
+    background: #FAFAFA;
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.cell-up {
+  color: #2E7D32;
+  font-weight: 500;
+}
+
+.cell-down {
+  color: #EC0000;
+  font-weight: 500;
+}
+
+.cell-status {
+  span {
+    padding: 2px 6px;
+    border-radius: 10px;
+    background: #f0f0f0;
+    font-size: 10px;
+    font-weight: 500;
+  }
+}
+
+.tbl-footer {
+  margin: 0 18px 14px;
+
+  button {
+    border: 0.5px solid #EC0000;
+    color: #EC0000;
+    border-radius: 5px;
+    font-size: 11px;
+    padding: 5px 12px;
+    background: none;
+    cursor: pointer;
+    
+    &:hover {
+      background: #FEF0F0;
+    }
+  }
+}
+
+.sql-toggle {
+  padding: 8px 18px;
+  background: #F9F9F9;
+  border-top: 0.5px solid #F0F0F0;
+  border-bottom: 0.5px solid #F0F0F0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 11px;
+  color: #999;
+  
+  .arrow {
+    transition: transform 0.2s;
+    margin-left: auto;
+  }
+  
+  .arrow.expanded {
+    transform: rotate(180deg);
+  }
+}
+
+.sql-body {
+  background: #F8F8F8;
+  padding: 12px 18px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.insights {
+  padding: 0 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ins-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.ins-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.score-footer {
+  padding: 10px 18px;
+  background: #F9F9F9;
+  border-top: 0.5px solid #F5F5F5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.score-label {
+  font-size: 10px;
+  color: #999;
+}
+
+.score-track {
+  width: 80px;
+  height: 4px;
+  background: #F0F0F0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.score-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+.score-val {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.score-sep {
+  width: 1px;
+  height: 14px;
+  background: #E0E0E0;
+}
+
+.score-rows {
+  font-size: 10px;
+  color: #BBB;
+}
+
+.err-banner {
+  margin: 14px 18px;
+  background: #FEF0F0;
+  border: 0.5px solid #FBBCBC;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  gap: 12px;
+}
+
+.err-ico {
+  width: 32px;
+  height: 32px;
+  background: #fff;
+  border: 0.5px solid #FBBCBC;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #B30000;
+}
+
+.err-body {
+  flex: 1;
+}
+
+.err-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: #B30000;
+  margin-bottom: 4px;
+}
+
+.err-msg {
+  font-size: 12px;
+  color: #7B1F1F;
+  line-height: 1.6;
+}
+
+.sql-block {
+  margin: 0 18px 14px;
+  background: #F8F8F8;
+  border: 0.5px solid #E8E8E8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.sql-header {
+  padding: 8px 12px;
+  background: #F0F0F0;
+  border-bottom: 0.5px solid #E8E8E8;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sql-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.sql-code {
+  background: #F8F8F8;
+  padding: 12px 18px;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.sql-err-line {
+  color: #B30000;
+  font-weight: 500;
+}
+
+.suggestion {
+  margin: 0 18px 14px;
+  background: #FFF8E1;
+  border: 0.5px solid #FFE082;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  gap: 10px;
+}
+
+.sug-ico {
+  width: 20px;
+  height: 20px;
+  background: #F57F17;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.sug-text {
+  font-size: 12px;
+  color: #4E342E;
+  line-height: 1.6;
+}
+
+.retry-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 18px 16px;
+  padding: 8px 14px;
+  background: none;
+  border: 0.5px solid #EC0000;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #EC0000;
+  cursor: pointer;
+  
+  &:hover {
+    background: #FEF0F0;
+  }
+}
+
+.divider {
+  height: 0.5px;
+  background: #F5F5F5;
+  margin: 0 18px;
+}

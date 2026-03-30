@@ -1,0 +1,69 @@
+<div class="page-wrapper">
+  <app-header></app-header>
+  
+  <div class="content-limit">
+    <app-stepper [currentStep]="currentStep"></app-stepper>
+
+    <div class="persona-context" *ngIf="personaType === 'gestor'">
+      <span class="context-label">Contexto da Carteira:</span>
+      <span class="context-value">Varejo Digital SP / Corporate Center</span>
+    </div>
+
+    <!-- Subhead can also be dynamic if needed, leaving static for now -->
+    <app-subhead></app-subhead>
+
+    <!-- KPI GRID (Sempre visível conforme a imagem de Step 2) -->
+    <div class="kpi-grid">
+      <app-kpi-card 
+        label="Eficiência geral" 
+        value="98%" 
+        sub="2pp vs mês anterior" 
+        trend="up" 
+        [accent]="true">
+      </app-kpi-card>
+      <app-kpi-card 
+        label="Processos analisados" 
+        value="1.482" 
+        sub="14% esta semana" 
+        trend="up">
+      </app-kpi-card>
+      <app-kpi-card 
+        label="Alertas críticos" 
+        value="3" 
+        sub="1 novo hoje" 
+        trend="down">
+      </app-kpi-card>
+      <app-kpi-card 
+        label="Ações pendentes" 
+        value="7" 
+        sub="2 requerem gestor" 
+        trend="neutral">
+      </app-kpi-card>
+    </div>
+
+    <!-- VIEW STEP 1: CARDS GRID -->
+    <div class="agents-detail-grid" *ngIf="currentStep === 1">
+      <app-agent-detail-card 
+        *ngFor="let agent of agents"
+        [name]="agent.name"
+        [category]="agent.category"
+        [icon]="agent.icon"
+        [iconBg]="agent.iconBg"
+        [status]="agent.status"
+        [insights]="agent.insights"
+        [time]="agent.time"
+        (viewDetail)="goToStep(2, agent.id)">
+      </app-agent-detail-card>
+    </div>
+
+    <!-- VIEW STEP 2: DETAILED REPORT -->
+    <div class="detailed-report-view" *ngIf="currentStep === 2">
+       <app-agent-report-view [data]="selectedReport"></app-agent-report-view>
+    </div>
+
+    <app-summary-box 
+      [step]="currentStep" 
+      [message]="currentStep === 2 ? (selectedReport?.footerInsight || '') : ''">
+    </app-summary-box>
+  </div>
+</div>

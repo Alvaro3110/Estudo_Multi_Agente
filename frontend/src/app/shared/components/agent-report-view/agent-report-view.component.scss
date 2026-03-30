@@ -1,0 +1,97 @@
+.report-wrapper {
+  margin-top: 24px;
+}
+
+.agent-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.agent-icon-circle {
+  width: 24px;
+  height: 24px;
+  background: #EC0000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.agent-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #EC0000;
+}
+
+.timestamp {
+  font-size: 11px;
+  color: #BBB;
+  margin-left: 8px;
+}
+
+.report-card {
+  background: white;
+  border: 0.5px solid #E0E0E0;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.card-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 0.5px solid #F0F0F0;
+  padding-bottom: 16px;
+
+  h3 { font-size: 15px; font-weight: 700; color: #333; }
+}
+
+.status-badge {
+  border: 0.5px solid #FFCDD2;
+  color: #EC0000;
+  background: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.description {
+  p {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #666;
+  }
+}
+
+.highlight {
+  background: #FEEEEE;
+  padding: 0 4px;
+  border-radius: 2px;
+  &.red { color: #EC0000; font-weight: 600; }
+}
+
+.bold { font-weight: 700; color: #333; }
+
+.footer-insight {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: #FAFAFA;
+  border-radius: 8px;
+  border-left: 3px solid #EC0000;
+
+  .insight-icon { font-size: 14px; margin-top: 2px; }
+  
+  p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+  }
+}

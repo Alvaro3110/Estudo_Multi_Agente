@@ -1,0 +1,58 @@
+.san-header {
+  height: 56px;
+  background: white;
+  border-bottom: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .chama {
+    width: 24px;
+    height: 24px;
+  }
+
+  .logo-text {
+    color: var(--san-red);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+  }
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .user-info {
+    font-size: 13px;
+    color: var(--text-secondary);
+    strong {
+      color: var(--text-primary);
+    }
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    background: #F5F5F5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
