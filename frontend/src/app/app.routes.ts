@@ -3,11 +3,20 @@ import { DepartmentSelectComponent } from './features/step1/department-select.co
 import { AgentReportComponent } from './features/step2/agent-report.component';
 import { ActionComponent } from './features/step3/action.component';
 import { ChatComponent } from './features/chat/chat.component';
+import { LoginComponent } from './features/login/login.component';
+import { authGuard } from './core/auth.guard';
 
 export const routes: Routes = [
-  { path: '', component: DepartmentSelectComponent },
-  { path: 'relatorio/:id', component: AgentReportComponent },
-  { path: 'acao/:id', component: ActionComponent },
-  { path: 'chat', component: ChatComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: '',
+    canActivate: [authGuard],
+    children: [
+      { path: '', component: DepartmentSelectComponent },
+      { path: 'relatorio/:id', component: AgentReportComponent },
+      { path: 'acao/:id', component: ActionComponent },
+      { path: 'chat', component: ChatComponent },
+    ]
+  },
   { path: '**', redirectTo: '' }
 ];

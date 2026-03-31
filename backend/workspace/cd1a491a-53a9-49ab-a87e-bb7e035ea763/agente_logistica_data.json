@@ -1,6 +1,0 @@
-[
-    {
-        "erro_sql": "[UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `l`.`customer_id` cannot be resolved. Did you mean one of the following? [`c`.`customer_id`, `l`.`shipment_id`, `l`.`carrier`, `c`.`customer_profile`, `c`.`name`]. SQLSTATE: 42703; line 20 pos 46",
-        "query_tentada": "SELECT \n    l.transaction_id,\n    l.transaction_date,\n    l.shipment_id,\n    l.shipment_date,\n    l.delivery_date,\n    l.status,\n    l.logistic_type,\n    l.warehouse_region,\n    l.carrier,\n    l.freight_cost,\n    c.customer_id,\n    c.name,\n    c.segment,\n    c.region,\n    c.customer_profile\nFROM \n    estudo_multi_agente.bronze.logistics_shipments l\nJOIN \n    estudo_multi_agente.bronze.customers c ON l.customer_id = c.customer_id\nWHERE \n    c.segment = 'varejo' AND c.region = 'SP';"
-    }
-]
