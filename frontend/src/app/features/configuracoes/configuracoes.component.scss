@@ -1,0 +1,324 @@
+.config-container {
+  display: flex;
+  height: calc(100vh - 60px);
+  background: #F9F9F9;
+}
+
+// Sidebar Interno
+.config-sidebar {
+  width: 220px;
+  background: #FFFFFF;
+  border-right: 0.5px solid #E0E0E0;
+  padding: 20px 0;
+  flex-shrink: 0;
+
+  .sb-section {
+    margin-bottom: 24px;
+    
+    .sb-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #999;
+      text-transform: uppercase;
+      padding: 0 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .sb-item {
+      padding: 10px 20px;
+      font-size: 13px;
+      color: #555;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-left: 3px solid transparent;
+      transition: all 0.1s;
+
+      &:hover { background: #F9F9F9; }
+      &.active {
+        background: #FEF0F0;
+        color: #EC0000;
+        border-left-color: #EC0000;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// Conteúdo Principal
+.config-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.cfg-section {
+  background: #FFFFFF;
+  border: 0.5px solid #E0E0E0;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative; // Para o modal inline
+}
+
+.cfg-sec-header {
+  padding: 16px 20px;
+  border-bottom: 0.5px solid #F0F0F0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .cfg-sec-title { font-size: 14px; font-weight: 600; color: #1A1A1A; }
+  .cfg-sec-sub { font-size: 11px; color: #888; margin-top: 2px; }
+}
+
+// Tabela de Usuários
+.cfg-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+  th {
+    background: #F9F9F9;
+    padding: 12px 20px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    border-bottom: 0.5px solid #F0F0F0;
+  }
+
+  td {
+    padding: 14px 20px;
+    border-bottom: 0.5px solid #F9F9F9;
+    font-size: 13px;
+  }
+}
+
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    .u-name { font-weight: 500; color: #333; }
+    .u-email { font-size: 11px; color: #999; }
+  }
+}
+
+.pill-perfil {
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &.pill-admin { background: #FEF0F0; color: #B30000; }
+  &.pill-gestor { background: #E3F2FD; color: #0D47A1; }
+  &.pill-analista { background: #E8F5E9; color: #1B5E20; }
+}
+
+.groups-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.group-tag {
+  background: #F5F5F5;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  color: #666;
+}
+
+.access-time { font-size: 11px; color: #999; }
+
+.icon-btn {
+  background: none;
+  border: 1px solid #E0E0E0;
+  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  &:hover { background: #F5F5F5; }
+}
+
+// Config Rows (Agentes e Preferências)
+.config-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 0.5px solid #F9F9F9;
+
+  .config-row-ico {
+    width: 36px;
+    height: 36px;
+    background: #F5F5F5;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .config-row-info {
+    flex: 1;
+    .cr-name { font-size: 13px; font-weight: 500; color: #1A1A1A; margin-bottom: 2px; }
+    .cr-desc { font-size: 11px; color: #999; }
+  }
+
+  .config-row-action {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .status-pill {
+      font-size: 10px;
+      font-weight: 700;
+      color: #999;
+      &.on { color: #EC0000; }
+    }
+  }
+}
+
+// Toggle Switch Reutilizável
+.toggle-switch {
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+
+  &.on { background: #EC0000; justify-content: flex-end; }
+  &.off { background: #E0E0E0; justify-content: flex-start; }
+
+  .ts-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+}
+
+// Botões
+.primary-btn {
+  background: #EC0000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover { background: #B30000; }
+}
+
+.outline-btn-small {
+  background: white;
+  color: #EC0000;
+  border: 1px solid #EC0000;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover { background: #FEF0F0; }
+}
+
+// Modal Inline
+.modal-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.modal-card {
+  width: 380px;
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  overflow: hidden;
+
+  .modal-header {
+    padding: 16px 20px;
+    border-bottom: 0.5px solid #F0F0F0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h3 { margin: 0; font-size: 15px; }
+    .close-btn { background: none; border: none; font-size: 24px; color: #999; cursor: pointer; }
+  }
+
+  .modal-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      label { font-size: 12px; font-weight: 600; color: #444; }
+      input, select {
+        height: 38px;
+        border: 0.5px solid #E0E0E0;
+        border-radius: 7px;
+        padding: 0 12px;
+        font-size: 13px;
+        outline: none;
+        &:focus { border-color: #EC0000; }
+      }
+    }
+  }
+
+  .modal-footer {
+    padding: 16px 20px;
+    background: #F9F9F9;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+// Placeholder
+.placeholder-card {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #BBB;
+  gap: 12px;
+  background: #FFF;
+  border: 0.5px solid #E0E0E0;
+  border-radius: 8px;
+  .p-icon { font-size: 32px; }
+}

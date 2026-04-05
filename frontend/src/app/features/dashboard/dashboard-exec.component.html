@@ -1,0 +1,73 @@
+<div class="dashboard-wrapper">
+  <!-- Seção 1: KPIs Globais -->
+  <div class="kpi-grid">
+    <div *ngFor="let kpi of kpis" class="kpi-card" [class.accent]="kpi.accent">
+      <div class="kpi-label">{{ kpi.label }}</div>
+      <div class="kpi-value">{{ kpi.value }}</div>
+      <div class="kpi-trend" [ngClass]="getTrendClass(kpi.trendType)">
+        {{ kpi.trend }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção 2: Painel Central -->
+  <div class="middle-grid">
+    <!-- Eficiência por Departamento -->
+    <div class="panel-card efficiency-panel">
+      <div class="panel-header">Eficiência por departamento</div>
+      <div class="dept-list">
+        <div *ngFor="let dept of deptKpis" class="dept-row">
+          <div class="dept-name">{{ dept.name }}</div>
+          <div class="progress-container">
+            <div class="progress-track">
+              <div class="progress-fill" [style.width.%]="dept.efficiency" [style.background-color]="dept.color"></div>
+            </div>
+            <span class="efficiency-value" [style.color]="dept.color">{{ dept.efficiency }}%</span>
+          </div>
+          <div class="dept-delta" [class.up]="dept.efficiencyDelta > 0" [class.down]="dept.efficiencyDelta < 0">
+            {{ dept.efficiencyDelta > 0 ? '↑' : dept.efficiencyDelta < 0 ? '↓' : '' }} 
+            {{ dept.efficiencyDelta !== 0 ? (dept.efficiencyDelta + 'pp') : '-' }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alertas Recentes -->
+    <div class="panel-card alerts-panel">
+      <div class="panel-header">Alertas recentes</div>
+      <div class="alert-list">
+        <div *ngFor="let alert of alerts" class="alert-item" [ngClass]="getAlertClass(alert.severity)">
+          <div class="alert-dot"></div>
+          <div class="alert-content">
+            <div class="alert-msg">{{ alert.message }}</div>
+            <div class="alert-meta">{{ alert.department }} · {{ alert.time }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção 3: Agentes em Execução -->
+  <div class="agents-section">
+    <div class="section-label">agentes em execução agora</div>
+    <div class="agent-grid">
+      <div *ngFor="let agent of agents" class="agent-mini-card">
+        <div class="agent-top">
+          <div class="agent-icon" [style.background-color]="getAgentTypeColor(agent.type)">
+            <!-- Simbolismo básico de agente -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/>
+              <path d="M12 14v4M12 6h.01M12 10h.01"/>
+            </svg>
+          </div>
+          <span class="agent-name">{{ agent.name }}</span>
+        </div>
+        <div class="agent-status-row">
+          <div class="status-dot" [ngClass]="getAgentStatusClass(agent.status)"></div>
+          <span class="status-text">{{ agent.status === 'running' ? 'executando' : agent.status === 'waiting' ? 'aguardando' : agent.status }}</span>
+        </div>
+        <div class="agent-task">{{ agent.currentTask }}</div>
+      </div>
+    </div>
+  </div>
+</div>

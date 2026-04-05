@@ -2,14 +2,14 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AgentStep } from '../../../core/agent.service';
-import { HighlightContentPipe } from '../../pipes/highlight-content.pipe';
+import { MarkdownPipe } from '../../pipes/markdown.pipe';
 import { SqlHighlightPipe } from '../../pipes/sql-highlight.pipe';
 import { FormatCellPipe } from '../../pipes/format-cell.pipe';
 
 @Component({
   selector: 'app-agent-bubble',
   standalone: true,
-  imports: [CommonModule, HighlightContentPipe, SqlHighlightPipe, FormatCellPipe],
+  imports: [CommonModule, MarkdownPipe, SqlHighlightPipe, FormatCellPipe],
   styleUrls: ['./agent-bubble.component.scss'],
   template: `
     <div class="report" *ngIf="step">
@@ -31,7 +31,7 @@ import { FormatCellPipe } from '../../pipes/format-cell.pipe';
               <span class="rh-time">{{ timestamp }}</span>
             </div>
             <div class="rh-title">
-              {{ step.content | slice:0:60 }}{{ (step.content?.length ?? 0) > 60 ? '…' : '' }}
+              {{ step.content | slice:0:60 }}{{ step.content.length > 60 ? '…' : '' }}
             </div>
           </div>
           <div class="badge"
@@ -47,8 +47,8 @@ import { FormatCellPipe } from '../../pipes/format-cell.pipe';
         </div>
 
         <!-- 2.2 Narrativa com highlights automáticos -->
-        <div class="narrative" *ngIf="hasNarrative"
-          [innerHTML]="step.content | highlightContent">
+        <div class="rc-narrative" *ngIf="hasNarrative"
+          [innerHTML]="step.content | markdown">
         </div>
 
         <!-- 2.3 Tabela dinâmica com dados reais -->
@@ -151,7 +151,7 @@ import { FormatCellPipe } from '../../pipes/format-cell.pipe';
           </div>
           <div class="err-body">
             <div class="err-title">Erro na consulta ao Databricks</div>
-            <div class="err-msg" [innerHTML]="step.content | highlightContent"></div>
+            <div class="err-msg" [innerHTML]="step.content | markdown"></div>
           </div>
         </div>
 

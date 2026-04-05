@@ -56,10 +56,10 @@ backend/mlflow.db
 # Angular / Frontend
 node_modules/
 /dist/
-/.angular/
-/.vscode/
-npm-debug.log
-yarn-error.log
+.angular/
+**/.angular/
+frontend/.angular/
+**/frontend/.angular/
 
 # OS temporary files
 .DS_Store

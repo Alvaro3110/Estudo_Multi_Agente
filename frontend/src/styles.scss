@@ -55,3 +55,74 @@ input {
 .hl-up   { color: #2E7D32; font-weight: 500; }
 .hl-down { color: #EC0000; font-weight: 500; }
 .hl-bold { color: #1A1A1A; font-weight: 500; }
+
+// Toggle switch reutilizável
+.toggle-switch {
+  width: 36px; height: 20px; border-radius: 10px;
+  cursor: pointer; display: flex; align-items: center;
+  padding: 2px; transition: background 0.2s; flex-shrink: 0;
+  &.on  { background: #EC0000; justify-content: flex-end; }
+  &.off { background: #E0E0E0; justify-content: flex-start; }
+  .ts-thumb {
+    width: 16px; height: 16px; border-radius: 50%; background: #fff;
+  }
+}
+
+// Blink animation para status de agentes
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+// Config section card
+.cfg-section {
+  background: #fff; border: 0.5px solid #E0E0E0;
+  border-radius: 8px; overflow: hidden;
+  .cfg-sec-header {
+    padding: 12px 16px; border-bottom: 0.5px solid #F0F0F0;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cfg-sec-title { font-size: 13px; font-weight: 500; color: #1A1A1A; }
+  .cfg-sec-sub   { font-size: 11px; color: #999; margin-top: 1px; }
+}
+
+// Estilos para conteúdo markdown renderizado no chat
+.rc-narrative, .agent-bubble-content {
+  font-size: 12px; color: #444; line-height: 1.7;
+
+  .md-h2 {
+    font-size: 13px; font-weight: 500; color: #1A1A1A;
+    margin: 12px 0 5px; padding-bottom: 4px;
+    border-bottom: 0.5px solid #F0F0F0;
+  }
+  .md-h3 {
+    font-size: 12px; font-weight: 500; color: #333;
+    margin: 8px 0 3px;
+  }
+  p   { margin-bottom: 6px; }
+  ul  { padding-left: 16px; margin-bottom: 6px; }
+  li  { margin-bottom: 3px; }
+
+  .md-code {
+    background: #F5F5F5; border: 0.5px solid #E8E8E8;
+    border-radius: 3px; padding: 1px 5px;
+    font-family: var(--font-mono, monospace); font-size: 11px; color: #333;
+  }
+  .md-code-block {
+    background: #F8F8F8; border: 0.5px solid #E8E8E8;
+    border-radius: 6px; overflow: hidden; margin: 8px 0;
+    .md-code-lang {
+      padding: 4px 10px; background: #F0F0F0;
+      font-size: 9px; color: #888; text-transform: uppercase;
+      letter-spacing: 0.05em; border-bottom: 0.5px solid #E8E8E8;
+    }
+    pre { padding: 10px; margin: 0; }
+    code {
+      font-family: var(--font-mono, monospace); font-size: 11px;
+      color: #333; line-height: 1.6; white-space: pre-wrap;
+    }
+  }
+  strong { font-weight: 500; color: #1A1A1A; }
+  em     { font-style: italic; color: #555; }
+}
+

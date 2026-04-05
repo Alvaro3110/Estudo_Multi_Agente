@@ -5,6 +5,8 @@ from app.core.config import settings
 from app.api.middleware.cors import add_cors
 from app.api.routes.agent import router as agent_router
 from app.api.routes.health import router as health_router
+from app.api.routes.auth import router as auth_router
+from app.api.routes.user import router as user_router
 
 logging.basicConfig(
     level=getattr(logging, settings.LOG_LEVEL.upper(), logging.INFO),
@@ -21,6 +23,15 @@ app = FastAPI(
 add_cors(app)
 app.include_router(agent_router, prefix="/api")
 app.include_router(health_router, prefix="/api")
+app.include_router(auth_router, prefix="/api")
+app.include_router(user_router, prefix="/api")
+
+@app.middleware("http")
+async def log_requests(request, call_next):
+    logger.info(f"🔍 [REQUEST] {request.method} {request.url}")
+    response = await call_next(request)
+    logger.info(f"📊 [RESPONSE] {request.method} {request.url} - {response.status_code}")
+    return response
 
 @app.on_event("startup")
 async def startup():

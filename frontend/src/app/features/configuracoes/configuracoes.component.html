@@ -1,0 +1,172 @@
+<div class="config-container">
+  <!-- Sidebar Interno -->
+  <aside class="config-sidebar">
+    <div class="sb-section">
+      <div class="sb-label">Geral</div>
+      <div class="sb-item" [class.active]="activeSection === 'usuarios'" (click)="setSection('usuarios')">
+        <span class="icon">👤</span> Usuários
+      </div>
+      <div class="sb-item" [class.active]="activeSection === 'grupos'" (click)="setSection('grupos')">
+        <span class="icon">📦</span> Grupos
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-label">Agentes</div>
+      <div class="sb-item" [class.active]="activeSection === 'agentes'" (click)="setSection('agentes')">
+        <span class="icon">🤖</span> Agentes IA
+      </div>
+      <div class="sb-item" [class.active]="activeSection === 'permissoes'" (click)="setSection('permissoes')">
+        <span class="icon">🛡️</span> Permissões
+      </div>
+    </div>
+
+    <div class="sb-section">
+      <div class="sb-label">Sistema</div>
+      <div class="sb-item" [class.active]="activeSection === 'integracoes'" (click)="setSection('integracoes')">
+        <span class="icon">🔌</span> Integrações
+      </div>
+      <div class="sb-item" [class.active]="activeSection === 'logs'" (click)="setSection('logs')">
+        <span class="icon">📄</span> Logs
+      </div>
+    </div>
+  </aside>
+
+  <!-- Área Principal -->
+  <main class="config-content" [ngSwitch]="activeSection">
+    
+    <!-- SEÇÃO: USUÁRIOS -->
+    <div *ngSwitchCase="'usuarios'" class="cfg-section">
+      <header class="cfg-sec-header">
+        <div>
+          <div class="cfg-sec-title">Usuários com acesso</div>
+          <div class="cfg-sec-sub">{{ users.length }} usuários ativos na plataforma</div>
+        </div>
+        <button class="outline-btn-small" (click)="openAddModal()">+ Adicionar</button>
+      </header>
+
+      <table class="cfg-table">
+        <thead>
+          <tr>
+            <th>Usuário</th>
+            <th>Perfil</th>
+            <th>Grupos</th>
+            <th>Último acesso</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>
+              <div class="user-cell">
+                <div class="avatar" [style.background-color]="getAvatarColor(user.perfil)">{{ getInitials(user.nome) }}</div>
+                <div class="user-info">
+                  <span class="u-name">{{ user.nome }}</span>
+                  <span class="u-email">{{ user.email }}</span>
+                </div>
+              </div>
+            </td>
+            <td>
+              <span class="pill-perfil" [ngClass]="'pill-' + user.perfil.toLowerCase()">{{ user.perfil }}</span>
+            </td>
+            <td>
+              <div class="groups-list">
+                <span *ngFor="let g of user.grupos" class="group-tag">{{ g }}</span>
+              </div>
+            </td>
+            <td><span class="access-time">{{ user.lastAccess }}</span></td>
+            <td>
+              <button class="icon-btn" (click)="editUser(user)">✏️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Modal Inline -->
+      <div *ngIf="showAddModal" class="modal-overlay">
+        <div class="modal-card">
+          <div class="modal-header">
+            <h3>Adicionar usuário</h3>
+            <button class="close-btn" (click)="closeAddModal()">×</button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Nome completo</label>
+              <input type="text" [(ngModel)]="newUser.nome" placeholder="Ex: João Silva">
+            </div>
+            <div class="form-group">
+              <label>E-mail corporativo</label>
+              <input type="email" [(ngModel)]="newUser.email" placeholder="nome@santander.com.br">
+            </div>
+            <div class="form-group">
+              <label>Perfil de acesso</label>
+              <select [(ngModel)]="newUser.perfil">
+                <option value="Admin">Admin</option>
+                <option value="Gestor">Gestor</option>
+                <option value="Analista">Analista</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="primary-btn" (click)="saveUser()">Adicionar usuário</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÇÃO: AGENTES -->
+    <div *ngSwitchCase="'agentes'" class="cfg-section">
+      <header class="cfg-sec-header">
+        <div>
+          <div class="cfg-sec-title">Agentes IA ativos</div>
+          <div class="cfg-sec-sub">Controle quais agentes estão habilitados no sistema</div>
+        </div>
+      </header>
+      <div class="agent-list">
+        <div *ngFor="let agent of agents" class="config-row">
+          <div class="config-row-ico" [ngClass]="'ico-' + agent.type">🤖</div>
+          <div class="config-row-info">
+            <div class="cr-name">{{ agent.name }}</div>
+            <div class="cr-desc">{{ agent.description }}</div>
+          </div>
+          <div class="config-row-action">
+            <span class="status-pill" [class.on]="agent.enabled">{{ agent.enabled ? 'ativo' : 'inativo' }}</span>
+            <div class="toggle-switch" [class.on]="agent.enabled" [class.off]="!agent.enabled" (click)="toggleAgent(agent.id)">
+              <div class="ts-thumb"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEÇÃO: PERMISSÕES (PREFERÊNCIAS) -->
+    <div *ngSwitchCase="'permissoes'" class="cfg-section">
+      <header class="cfg-sec-header">
+        <div>
+          <div class="cfg-sec-title">Preferências do sistema</div>
+          <div class="cfg-sec-sub">Regras globais de automação e segurança</div>
+        </div>
+      </header>
+      <div class="prefs-list">
+        <div *ngFor="let pref of prefs" class="config-row">
+          <div class="config-row-info">
+            <div class="cr-name">{{ pref.label }}</div>
+            <div class="cr-desc">{{ pref.description }}</div>
+          </div>
+          <div class="config-row-action">
+            <div class="toggle-switch" [class.on]="pref.enabled" [class.off]="!pref.enabled" (click)="togglePreference(pref.key)">
+              <div class="ts-thumb"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLACEHOLDER PARA SEÇÕES EM DESENVOLVIMENTO -->
+    <div *ngSwitchDefault class="placeholder-card">
+      <div class="p-icon">⚙️</div>
+      <p>Funcionalidade em desenvolvimento</p>
+    </div>
+
+  </main>
+</div>

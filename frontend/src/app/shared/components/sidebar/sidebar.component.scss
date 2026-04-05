@@ -47,20 +47,15 @@
   .sb-logo {
     display: flex;
     align-items: center;
-    gap: 10px;
     
-    .chama-red { width: 22px; height: 22px; }
-    .sb-logo-text {
-      font-size: 14px;
-      font-weight: 700;
-      color: #EC0000;
-      white-space: nowrap;
-    }
+    .chama-red { width: auto; height: 22px; }
   }
 
   .sb-logo-ico {
     display: flex;
-    .chama-red { width: 22px; height: 22px; }
+    overflow: hidden;
+    width: 28px;
+    .chama-red.icon-only { width: auto; height: 22px; object-fit: none; object-position: left center; }
   }
 
   .toggle-btn {

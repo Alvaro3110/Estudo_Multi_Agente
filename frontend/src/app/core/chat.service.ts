@@ -28,7 +28,7 @@ export class ChatService {
     console.log('[ChatService] Enviando mensagem para o backend:', text);
 
     try {
-      const response = await fetch('http://localhost:8000/agent/run', {
+      const response = await fetch('http://localhost:4000/agent/run', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text })

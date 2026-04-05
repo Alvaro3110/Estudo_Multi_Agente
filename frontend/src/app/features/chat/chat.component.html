@@ -1,0 +1,108 @@
+<div class="chat-container">
+  <!-- PARTE 1 — HEADER DO CHAT -->
+  <header class="chat-header">
+    <div class="header-left">
+      <div class="agent-avatar-header">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+      </div>
+      <div class="header-info">
+        <div class="title">Agente Principal</div>
+        <div class="subtitle">Orquestra múltiplos agentes especializados</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="group-pill">Varejo Digital SP</div>
+      <div class="status-badge">
+        <span class="dot pulse"></span>
+        monitorado no painel
+      </div>
+    </div>
+  </header>
+
+  <main class="chat-messages" #scrollContainer>
+    <div class="chat-body">
+      <!-- Mensagens históricas -->
+      <ng-container *ngFor="let msg of messages">
+        
+        <div class="message-row user" *ngIf="msg.type === 'user'">
+          <div class="bubble-wrapper">
+            <div class="msg-user-bubble">{{ msg.content }}</div>
+          </div>
+        </div>
+
+        <app-agent-bubble *ngIf="msg.type === 'agent_report'"
+          [step]="msg.step!"
+          [agentName]="msg.step!.agent_id!"
+          [agentType]="msg.step!.agent_id!.replace('agente_', '')"
+          [timestamp]="'agora'">
+        </app-agent-bubble>
+
+        <app-agent-bubble *ngIf="msg.type === 'error'"
+          [step]="msg.step!"
+          agentName="Sistema"
+          agentType="erro"
+          timestamp="agora">
+        </app-agent-bubble>
+
+        <app-hitl-card *ngIf="msg.type === 'checkpoint'"
+          [step]="msg.step!"
+          (decision)="onHitlDecision($event)">
+        </app-hitl-card>
+
+        <div class="message-row assistant" *ngIf="msg.type === 'stream_final'">
+          <div class="agent-avatar-msg">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </div>
+          <div class="bubble-wrapper">
+            <div class="agent-name">Agente Principal</div>
+            <div class="msg-agent-bubble streaming-text agent-bubble-content" [innerHTML]="(msg.content || '') | markdown">
+            </div>
+          </div>
+        </div>
+
+      </ng-container>
+
+      <!-- TRACKER: único, atualizado in-place, visível durante execução -->
+      <app-pipeline-tracker
+        *ngIf="pipelineVisible && currentPipeline"
+        [state]="currentPipeline">
+      </app-pipeline-tracker>
+    </div>
+  </main>
+
+  <footer class="chat-input-wrapper">
+    <div class="input-context">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#CCC" stroke-width="2">
+        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+      Agente Principal · {{ agentCount }} agentes disponíveis · Varejo Digital SP
+    </div>
+
+    <div class="input-row">
+      <textarea 
+        [(ngModel)]="userInput" 
+        (keydown.enter)="$event.preventDefault(); send()" 
+        [disabled]="isWaitingHitl || state === 'streaming'"
+        placeholder="Peça algo..."
+        rows="1"></textarea>
+      
+      <button class="send-btn" (click)="send()" [disabled]="isWaitingHitl || state === 'streaming' || !userInput.trim()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+
+    <div class="input-hint" *ngIf="isWaitingHitl">
+      Aguardando aprovação antes de continuar
+    </div>
+  </footer>
+</div>

@@ -29,7 +29,7 @@ export class UserGroupsService {
   loadGroups(): void {
     this.loading$.next(true);
     // Simulação de chamada real.
-    this.http.get<UserGroup[]>('http://localhost:8000/api/users/me/groups').pipe(
+    this.http.get<UserGroup[]>('http://localhost:4000/api/users/me/groups').pipe(
       catchError(() => {
         // TODO: remover mock quando endpoint real existir no backend FastAPI
         return of(this.getMockGroups());

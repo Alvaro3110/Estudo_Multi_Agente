@@ -2,15 +2,10 @@
   <div class="sb-top">
     <div class="sb-logo" *ngIf="isExpanded">
       <!-- SVG Chama Santander + Texto -->
-      <svg class="chama-red" viewBox="0 0 44 44">
-        <path fill="#EC0000" d="M22 0C22 0 10 12 10 22C10 32 22 44 22 44C22 44 34 32 34 22C34 12 22 0 22 0ZM22 36C18.6863 36 16 33.3137 16 30C16 26.6863 18.6863 24 22 24C25.3137 24 28 26.6863 28 30C28 33.3137 25.3137 36 22 36Z"/>
-      </svg>
-      <span class="sb-logo-text">Santander AI</span>
+      <img src="assets/images/santander-logo-red.svg" alt="Santander Logo" class="chama-red" />
     </div>
     <div class="sb-logo-ico" *ngIf="!isExpanded">
-      <svg class="chama-red" viewBox="0 0 44 44">
-        <path fill="#EC0000" d="M22 0C22 0 10 12 10 22C10 32 22 44 22 44C22 44 34 32 34 22C34 12 22 0 22 0ZM22 36C18.6863 36 16 33.3137 16 30C16 26.6863 18.6863 24 22 24C25.3137 24 28 26.6863 28 30C28 33.3137 25.3137 36 22 36Z"/>
-      </svg>
+      <img src="assets/images/santander-logo-red.svg" alt="Santander Logo" class="chama-red icon-only" />
     </div>
     <button class="toggle-btn" (click)="toggle()" [title]="isExpanded ? 'Recolher' : 'Expandir'">
       <svg viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
@@ -32,17 +27,35 @@
   <nav class="group-nav">
     <div class="sb-sec-label">NAVEGAÇÃO</div>
     <ul class="sb-menu">
-      <li class="sb-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [title]="'Dashboard'">
+      <li class="sb-item" routerLink="/dashboard" routerLinkActive="active" [title]="'Dashboard Executivo'">
         <span class="icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
         </span>
         <span class="sb-item-label">Dashboard</span>
+      </li>
+      <li class="sb-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [title]="'Início'">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        </span>
+        <span class="sb-item-label">Início</span>
       </li>
       <li class="sb-item" routerLink="/chat" routerLinkActive="active" [title]="'Perguntar para IA'">
         <span class="icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
         </span>
         <span class="sb-item-label">Perguntar para IA</span>
+      </li>
+      <li class="sb-item" routerLink="/historico" routerLinkActive="active" [title]="'Histórico de Análises'">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path></svg>
+        </span>
+        <span class="sb-item-label">Histórico</span>
+      </li>
+      <li class="sb-item" *ngIf="(user$ | async)?.perfil === 'Admin'" routerLink="/configuracoes" routerLinkActive="active" [title]="'Configurações'">
+        <span class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </span>
+        <span class="sb-item-label">Configurações</span>
       </li>
     </ul>
 

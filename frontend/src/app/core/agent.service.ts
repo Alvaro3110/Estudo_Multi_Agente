@@ -12,6 +12,7 @@ export interface AgentStep {
   session_id?: string;
   content: string;
   metadata?: Record<string, any>;
+  pipeline_state?: any;
 }
 
 @Injectable({

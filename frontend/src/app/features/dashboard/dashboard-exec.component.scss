@@ -1,0 +1,253 @@
+.dashboard-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 24px;
+  background: #F5F5F5;
+  min-height: 100%;
+}
+
+// Grid de KPIs superiore
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.kpi-card {
+  background: #FFFFFF;
+  border: 0.5px solid #E0E0E0;
+  border-radius: 8px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.2s;
+
+  &:hover { transform: translateY(-2px); border-color: #CCC; }
+
+  &.accent { border-top: 2px solid #EC0000; }
+
+  .kpi-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .kpi-value {
+    font-size: 24px;
+    font-weight: 500;
+    color: #1A1A1A;
+  }
+
+  .kpi-trend {
+    font-size: 11px;
+    font-weight: 500;
+    
+    &.trend-up { color: #2E7D32; }
+    &.trend-down { color: #EC0000; }
+    &.trend-neutral { color: #888; }
+  }
+}
+
+// Painel Central: Eficiência e Alertas
+.middle-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 16px;
+}
+
+.panel-card {
+  background: #FFFFFF;
+  border: 0.5px solid #E0E0E0;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+
+  .panel-header {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin-bottom: 20px;
+  }
+}
+
+// Lista de Departamentos (Barras)
+.dept-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.dept-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  .dept-name {
+    width: 160px;
+    font-size: 13px;
+    color: #444;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .progress-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .progress-track {
+      flex: 1;
+      height: 14px;
+      background: #F0F0F0;
+      border-radius: 10px;
+      overflow: hidden;
+
+      .progress-fill {
+        height: 100%;
+        border-radius: 10px;
+        transition: width 1s ease-out;
+      }
+    }
+
+    .efficiency-value {
+      width: 40px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: right;
+    }
+  }
+
+  .dept-delta {
+    width: 60px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: right;
+    &.up { color: #2E7D32; }
+    &.down { color: #EC0000; }
+  }
+}
+
+// Alertas
+.alert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alert-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 0.5px solid transparent;
+
+  &.alert-high { background: #FEF0F0; border-color: #FBBCBC; .alert-dot { background: #EC0000; } }
+  &.alert-medium { background: #FFF8E1; border-color: #FFE082; .alert-dot { background: #F57F17; } }
+  &.alert-low { background: #E8F5E9; border-color: #C8E6C9; .alert-dot { background: #43A047; } }
+
+  .alert-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .alert-content {
+    .alert-msg { font-size: 12px; font-weight: 500; color: #333; margin-bottom: 2px; }
+    .alert-meta { font-size: 10px; color: #888; }
+  }
+}
+
+// Seção de Agentes
+.agents-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.agent-mini-card {
+  background: #FFFFFF;
+  border: 0.5px solid #E0E0E0;
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .agent-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .agent-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      svg { width: 14px; height: 14px; }
+    }
+
+    .agent-name { font-size: 12px; font-weight: 600; color: #1A1A1A; }
+  }
+
+  .agent-status-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #CCC;
+
+      &.status-running { background: #43A047; animation: blink 1.5s infinite; }
+      &.status-waiting { background: #F57F17; animation: blink 1.5s infinite; }
+      &.status-error { background: #EC0000; }
+    }
+
+    .status-text { font-size: 11px; color: #666; }
+  }
+
+  .agent-task {
+    font-size: 10px;
+    color: #AAA;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@media (max-width: 1100px) {
+  .kpi-grid, .agent-grid { grid-template-columns: repeat(2, 1fr); }
+  .middle-grid { grid-template-columns: 1fr; }
+}

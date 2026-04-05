@@ -31,7 +31,7 @@ export class AuthService {
   login(credentials: LoginCredentials): Observable<AuthUser> {
     this.loading$.next(true);
     // Simulação de chamada real. Ajustar URL conforme o backend.
-    return this.http.post<AuthUser>('http://localhost:8000/api/auth/login', credentials).pipe(
+    return this.http.post<AuthUser>('http://localhost:4000/api/auth/login', credentials).pipe(
       catchError(() => {
         // Mock de fallback para desenvolvimento
         if (credentials.senha.length >= 6) {

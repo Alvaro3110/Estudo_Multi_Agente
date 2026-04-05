@@ -1,0 +1,84 @@
+<div class="historico-container">
+  <!-- Painel Esquerdo: Lista -->
+  <aside class="historico-list-pane">
+    <div class="search-box">
+      <input 
+        type="text" 
+        placeholder="Buscar análises..." 
+        [(ngModel)]="searchTerm"
+        (input)="onSearch()"
+      >
+    </div>
+
+    <div class="list-scroll">
+      <div *ngFor="let item of items" 
+           class="historico-item-card" 
+           [class.active]="item.id === selectedItem?.id"
+           (click)="selectItem(item)">
+        <div class="card-top">
+          <span class="dept-badge" [ngClass]="getBadgeClass(item.departmentName)">{{ item.departmentName }}</span>
+          <span class="date-text">{{ item.createdAt | dateRelative }}</span>
+        </div>
+        <div class="card-query">{{ item.query }}</div>
+        <div class="card-footer">
+          {{ item.agentCount }} agentes · {{ item.rowCount }} registros
+        </div>
+      </div>
+
+      <div *ngIf="items.length === 0" class="empty-list">
+        Nenhuma análise encontrada
+      </div>
+    </div>
+  </aside>
+
+  <!-- Painel Direito: Detalhe -->
+  <main class="historico-detail-pane">
+    <div *ngIf="!selectedItem" class="empty-state">
+      <div class="empty-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#CCC" stroke-width="2">
+          <path d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>
+        </svg>
+      </div>
+      <p>Selecione uma análise para visualizar</p>
+    </div>
+
+    <ng-container *ngIf="selectedItem">
+      <header class="detail-header">
+        <div class="header-left">
+          <h1>{{ selectedItem.query }}</h1>
+          <div class="pills-row">
+            <span class="dept-badge" [ngClass]="getBadgeClass(selectedItem.departmentName)">{{ selectedItem.departmentName }}</span>
+            <span class="pill-blue">{{ selectedItem.agentCount }} agentes</span>
+            <span class="pill-green">{{ selectedItem.rowCount }} registros</span>
+            <span class="pill-gray">{{ selectedItem.createdAt | dateRelative }}</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <button class="outline-btn" (click)="exportPdf()">Exportar PDF</button>
+          <button class="primary-btn" (click)="reexecute(selectedItem)">Reexecutar</button>
+        </div>
+      </header>
+
+      <div class="messages-area">
+        <div *ngFor="let msg of selectedItem.messages" 
+             class="message-bubble" 
+             [class.user-msg]="msg.role === 'user'" 
+             [class.agent-msg]="msg.role === 'agent'">
+          
+          <div *ngIf="msg.role === 'agent'" class="agent-name">{{ msg.agentName }}</div>
+          <div class="msg-content">{{ msg.content }}</div>
+          
+          <div class="msg-meta">
+            <span *ngIf="msg.rowCount" class="tag-rowcount">{{ msg.rowCount }} registros analisados</span>
+            <span *ngIf="msg.status === 'done'" class="tag-done">concluído</span>
+            <span class="msg-time">{{ msg.timestamp }}</span>
+          </div>
+        </div>
+
+        <div *ngIf="selectedItem.messages.length === 0" class="no-messages">
+          Mensagens desta análise não estão disponíveis
+        </div>
+      </div>
+    </ng-container>
+  </main>
+</div>

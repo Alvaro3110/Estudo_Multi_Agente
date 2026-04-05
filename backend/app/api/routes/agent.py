@@ -31,6 +31,15 @@ NODE_TO_TYPE = {
     "memorizador":          "action",
 }
 
+PIPELINE_ORDER = [
+    'transformer', 'planner', 'data_scanner', 
+    'categorical_semantic', 'router', 
+    'agente_vendas', 'agente_financeiro', 'agente_logistica', 
+    'consolidador', 'gepa', 'juiz', 'memorizador'
+]
+
+INTERNAL_NODES = ['juiz', 'memorizador', 'gepa']
+
 NODE_LABELS = {
     "transformer":          "Compreendendo o contexto da consulta…",
     "planner":              "Planejando estratégia de análise…",
@@ -45,6 +54,31 @@ NODE_LABELS = {
     "juiz":                 "Avaliando qualidade final…",
     "memorizador":          "Salvando memória da sessão…",
 }
+
+def calcular_pipeline_state(
+    node: str,
+    rendered_nodes: set,
+    iteracoes_replanejamento: int = 0
+):
+    from app.schemas.agent import PipelineState
+    visible_nodes = [n for n in PIPELINE_ORDER if n not in INTERNAL_NODES]
+
+    steps_done = [n for n in visible_nodes if n in rendered_nodes]
+    step_active = node if node in visible_nodes else None
+    steps_pending = [n for n in visible_nodes if n not in rendered_nodes and n != node]
+
+    is_replanning = iteracoes_replanejamento > 0
+    label = NODE_LABELS.get(node, f'Processando {node}...')
+
+    return PipelineState(
+        steps_done=steps_done,
+        step_active=step_active,
+        steps_pending=steps_pending,
+        current_label=label,
+        is_replanning=is_replanning,
+        replan_count=iteracoes_replanejamento,
+        total_steps=len(PIPELINE_ORDER) - len(INTERNAL_NODES),
+    )
 
 
 async def _run_graph_stream(
@@ -90,7 +124,8 @@ async def _run_graph_stream(
     yield format_sse(AgentStep(
         type="thinking",
         session_id=session_id,
-        content="Iniciando inteligência multi-agente..."
+        content="Iniciando inteligência multi-agente...",
+        pipeline_state=calcular_pipeline_state("transformer", set(), 0)
     ))
 
     try:
@@ -109,18 +144,20 @@ async def _run_graph_stream(
                 break
 
             node = event.get("active_node", "pensando")
-
+            replan_count = event.get('iteracoes_replanejamento', 0)
 
             # --- 1. Emite step de status para todos os nós ---
             if node not in rendered_nodes:
                 step_type = NODE_TO_TYPE.get(node, "thinking")
                 label = NODE_LABELS.get(node, f"Processando {node}…")
 
+                pipeline = calcular_pipeline_state(node, rendered_nodes, replan_count)
                 step = AgentStep(
                     type=step_type,
                     agent_id=node if node.startswith("agente_") else None,
                     session_id=session_id,
                     content=label,
+                    pipeline_state=pipeline
                 )
                 yield format_sse(step)
                 rendered_nodes.add(node)

@@ -1,0 +1,40 @@
+<div class="pipeline-tracker"
+  [class.replanning]="state.is_replanning">
+  <div class="pt-header">
+    <span class="pt-title">Pipeline multi-agente</span>
+    <span class="pt-count">
+      {{ state.steps_done.length }} de {{ state.total_steps }} etapas
+    </span>
+  </div>
+
+  <div class="pt-steps">
+    <ng-container *ngFor="let step of getDisplaySteps(); let last=last">
+      <div class="pt-step"
+        [class.done]="step.isDone"
+        [class.active]="step.isActive"
+        [class.pending]="!step.isDone && !step.isActive">
+        <svg *ngIf="step.isDone" viewBox="0 0 24 24">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        {{ step.node }}
+      </div>
+      <span class="pt-arrow" *ngIf="!last">›</span>
+    </ng-container>
+  </div>
+
+  <!-- Etapa atual em destaque -->
+  <div class="pt-current" *ngIf="!state.is_replanning">
+    <div class="pt-spinner"></div>
+    {{ state.current_label }}
+  </div>
+
+  <!-- Replanejamento — compacto, não spam -->
+  <div class="pt-replan" *ngIf="state.is_replanning">
+    <svg viewBox="0 0 24 24">
+      <polyline points="1 4 1 10 7 10"/>
+      <path d="M3.51 15a9 9 0 1 0 .49-3.57"/>
+    </svg>
+    Juiz solicitou refinamento — replanejando
+    ({{ state.replan_count }}/2)
+  </div>
+</div>
