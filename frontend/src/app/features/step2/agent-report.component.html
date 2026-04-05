@@ -2,130 +2,129 @@
 <app-stepper [currentStep]="2"></app-stepper>
 <app-context-bar></app-context-bar>
 
-<div class="sub-header" *ngIf="dept$ | async as dept">
-  <div class="left">
-    <div class="icon-circle">
-       <!-- Ícones Dinâmicos SVG -->
-       <svg *ngIf="dept.iconType === 'financeiro'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-       <svg *ngIf="dept.iconType === 'rh'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-       <svg *ngIf="dept.iconType === 'logistica'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-       <svg *ngIf="dept.iconType === 'tech'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+<!-- 1. SUBHEADER DINÂMICO -->
+<div class="subheader" *ngIf="config">
+  <div class="dept-info">
+    <div class="dept-ico"
+         [style.background]="config.iconBg"
+         [style.color]="config.iconColor">
+      <app-dept-icon [type]="config.iconType || ''"></app-dept-icon>
     </div>
-    <div class="info">
-      <h2>{{ dept.name }}</h2>
-      <p>4 agentes analisados · atualizado agora</p>
+    <div>
+      <div class="dept-name">{{ config.deptName }}</div>
+      <div class="dept-sub">
+        {{ config.agents.length }} agentes analisados · atualizado agora
+      </div>
     </div>
   </div>
-  <div class="actions">
-    <button class="back-btn" (click)="goBack()">← Voltar</button>
-    <button class="advance-btn" (click)="nextStep(dept.id)">Avançar para Ação →</button>
+  <div class="dept-badge"
+       [ngClass]="'badge-' + (config.badgeVariant || 'ok')">
+    {{ config.badgeText }}
+  </div>
+  <button class="btn-back" (click)="goBack()">← Voltar</button>
+</div>
+
+<!-- 2. KPI BAR: 3 colunas baseadas em config.kpis -->
+<div class="kpi-bar" *ngIf="config">
+  <div class="kpi" *ngFor="let kpi of config.kpis; let first = first"
+       [class.kpi-accent]="first">
+    <div class="kpi-label">{{ kpi.label }}</div>
+    <div class="kpi-val">{{ kpi.value }}</div>
+    <div class="kpi-trend" [ngClass]="'trend-' + kpi.trend">
+      {{ getTrendLabel(kpi) }}
+    </div>
   </div>
 </div>
 
-<div class="kpi-bar">
-  <div class="kpi active">
-    <span class="label">Eficiência Geral</span>
-    <span class="value">98%</span>
-    <span class="trend up">↑ 2pp vs mês anterior</span>
-  </div>
-  <div class="kpi">
-    <span class="label">Processos Analisados</span>
-    <span class="value">1.482</span>
-    <span class="trend up">↑ 14% esta semana</span>
-  </div>
-  <div class="kpi">
-    <span class="label">Alertas Críticos</span>
-    <span class="value">3</span>
-    <span class="trend down">↑ 1 novo hoje</span>
-  </div>
-  <div class="kpi">
-    <span class="label">Ações Pendentes</span>
-    <span class="value">7</span>
-    <span class="trend">2 requerem gestor</span>
+<!-- 3. AGENTS PILLS -->
+<div class="agents-bar" *ngIf="config">
+  <span class="agents-bar-label">agentes ativos neste departamento</span>
+  <div class="agents-pills">
+    <div class="agent-pill"
+         *ngFor="let agent of config.agents"
+         [ngClass]="'pill-' + agent.pillVariant">
+      <div class="pill-dot" [ngClass]="'dot-' + agent.pillVariant"></div>
+      {{ agent.name }}
+    </div>
   </div>
 </div>
 
-<div class="chat-area" *ngIf="report$ | async as report">
-  <div class="agent-bubble-wrapper">
-    <div class="agent-avatar-container">
-      <div class="agent-avatar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-      </div>
-      <div class="timeline-line"></div>
-    </div>
-    <div class="bubble-content">
-      <div class="agent-meta">
-        <span class="name">{{ report.agentName }}</span>
-        <span class="time">{{ report.timestamp }}</span>
-      </div>
+<!-- area-report / chat-area -->
+<div class="chat-area">
+  <div class="chat-container">
+
+    <div *ngFor="let msg of messages" [ngClass]="'msg-wrapper-' + msg.role">
       
-      <div class="report-card animate-in">
-        <div class="report-header">
-           <span class="title">Análise de receita por produto — outubro 2025</span>
-           <span class="badge">concluído</span>
-        </div>
+      <!-- USUÁRIO -->
+      <div class="msg-user" *ngIf="msg.role === 'user'">
+        {{ msg.content }}
+      </div>
 
-        <div class="narrative">
-          O gráfico abaixo mostra a distribuição de receita bruta por linha de produto no mês de outubro. 
-          O produto <span class="highlight">Crédito Consignado</span> representa a maior fatia da receita com R$ 1,8M, 
-          seguido por <span class="highlight">Conta Corrente PJ</span> com R$ 980K. Destaca-se o crescimento expressivo de 
-          <span class="highlight">Crédito Imobiliário</span> que avançou +18% em relação a setembro, impulsionado pela 
-          retomada de financiamentos do cliente <span class="highlight">XPTO Incorporações</span>, que sozinho representa 34% do volume desta linha.
+      <!-- AGENTE -->
+      <div class="msg-agent-wrapper" *ngIf="msg.role === 'agent'">
+        <div class="agent-avatar-col">
+          <div class="agent-avatar" [style.background]="msg.agentColor">
+             <app-dept-icon [type]="msg.agentIconType"></app-dept-icon>
+          </div>
+          <div class="msg-line"></div>
         </div>
-
-        <div class="chart-section">
-          <span class="section-label">Receita bruta por produto (R$ mil)</span>
-          <div class="bars-container">
-            <div class="bar-row" *ngFor="let item of report.chartData">
-              <span class="bar-name">{{ item.label }}</span>
-              <div class="bar-track">
-                <div class="bar-fill" [style.width.%]="showBars ? item.pct : 0" [style.background-color]="getBarColor(item.label)">
-                  <span class="bar-value" *ngIf="showBars">R$ {{ item.value }}K</span>
-                </div>
-              </div>
-              <span class="bar-trend" [ngClass]="item.trend > 0 ? 'up' : 'down'" *ngIf="item.trend !== 0">
-                {{ item.trend > 0 ? '+' : '' }}{{ item.trend }}%
-              </span>
-            </div>
+        <div class="agent-msg-content">
+          <div class="agent-meta">
+            <span class="name">{{ msg.agentName }}</span>
+            <span class="time">{{ msg.timestamp }}</span>
+          </div>
+          <div class="report-bubble animate-in">
+             <div class="rb-header">
+                <span class="rb-title">Relatório de Análise</span>
+                <span class="rb-count">{{ msg.rowCount | number:'1.0-0':'pt-BR' }} registros</span>
+             </div>
+             <div class="rb-body">
+                <p [innerHTML]="msg.content"></p>
+             </div>
           </div>
         </div>
+      </div>
 
-        <div class="table-section">
-           <span class="section-label">Principais clientes por produto</span>
-           <table>
-             <thead>
-               <tr>
-                 <th>Cliente</th>
-                 <th>Produto</th>
-                 <th>Volume (out)</th>
-                 <th>Var. mês</th>
-                 <th>Status</th>
-               </tr>
-             </thead>
-             <tbody>
-               <tr *ngFor="let row of report.tableData">
-                 <td>{{ row.client }}</td>
-                 <td>{{ row.product }}</td>
-                 <td>{{ row.volume }}</td>
-                 <td [ngClass]="row.var > 0 ? 'trend up' : 'trend down'">{{ row.var > 0 ? '+' : '' }}{{ row.var }}%</td>
-                 <td><span class="status-pill" [ngClass]="row.status">{{ row.status }}</span></td>
-               </tr>
-             </tbody>
-           </table>
-        </div>
+      <!-- CONCLUSÃO -->
+      <div class="msg-conclusion" *ngIf="msg.role === 'conclusion'">
+         <div class="conc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#EC0000" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+         </div>
+         <div class="conc-text">
+            <strong>Conclusão Consolidada</strong>
+            <p>{{ msg.content }}</p>
+         </div>
+      </div>
 
-        <div class="conclusion">
-           <div class="info-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#EC0000" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-           </div>
-           <p>{{ report.conclusion }}</p>
-        </div>
+    </div>
+
+  </div>
+
+  <!-- FAROL DINÂMICO (SIDEBAR DO RELATÓRIO) -->
+  <div class="report-sidebar">
+    <div class="farol-section" *ngIf="config">
+      <div class="section-label">indicadores do departamento</div>
+      <div class="farol-row" *ngFor="let ind of config.indicators">
+        <div class="farol-dot" [ngClass]="'dot-' + ind.status"></div>
+        <span class="farol-text">{{ ind.label }}</span>
+        <span class="farol-val" [ngClass]="'val-' + ind.status">
+          {{ ind.value }}
+        </span>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="footer" *ngIf="dept$ | async as dept">
-  <span class="hint">3 agentes ainda em processamento — você pode avançar ou aguardar</span>
-  <button class="next-btn" (click)="nextStep(dept.id)">Prosseguir para Ação →</button>
+    <div class="actions-section" *ngIf="config">
+      <button class="btn-action" (click)="nextStep(config.deptId)">
+        Avançar para Ação
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+
 </div>

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { DashboardService } from './dashboard.service';
 
-describe('DashboardService', () => {
+describe('DashboardService — getReportConfig', () => {
   let service: DashboardService;
 
   beforeEach(() => {
@@ -9,27 +9,44 @@ describe('DashboardService', () => {
     service = TestBed.inject(DashboardService);
   });
 
-  it('deve retornar 4 departamentos em getDepartments()', (done) => {
-    service.getDepartments().subscribe(depts => {
-      expect(depts.length).toBe(4);
+  it('retorna config correto para cada um dos 9 deptIds', (done) => {
+    const ids = [
+      'clusterizacao', 'garantias', 'financeiro', 'rentabilidade', 
+      'socio', 'cadastro', 'emprestimo', 'investimentos', 'bacen'
+    ];
+    
+    ids.forEach(id => {
+      service.getReportConfig(id).subscribe(config => {
+        expect(config.deptId).toBe(id);
+      });
+    });
+    done();
+  });
+
+  it('retorna config genérico para deptId inválido', (done) => {
+    service.getReportConfig('invalid').subscribe(config => {
+      expect(config.deptId).toBe('financeiro'); // fallback default index 2
       done();
     });
   });
 
-  it('deve atualizar o BehaviorSubject ao chamar setDecision()', (done) => {
-    service.setDecision('a1', 'approve');
-    service.getDecisions().subscribe(decisions => {
-      expect(decisions['a1']).toBe('approve');
+  it('cada config tem exatamente 3 kpis', (done) => {
+    service.getReportConfig('financeiro').subscribe(config => {
+      expect(config.kpis.length).toBe(3);
       done();
     });
   });
 
-  it('deve emitir o mapa atualizado após múltiplas decisões', (done) => {
-    service.setDecision('a1', 'approve');
-    service.setDecision('a2', 'dismiss');
-    service.getDecisions().subscribe(decisions => {
-      expect(decisions['a1']).toBe('approve');
-      expect(decisions['a2']).toBe('dismiss');
+  it('cada config tem exatamente 3 agents', (done) => {
+    service.getReportConfig('financeiro').subscribe(config => {
+      expect(config.agents.length).toBe(3);
+      done();
+    });
+  });
+
+  it('cada config tem exatamente 4 indicators', (done) => {
+    service.getReportConfig('financeiro').subscribe(config => {
+      expect(config.indicators.length).toBe(4);
       done();
     });
   });

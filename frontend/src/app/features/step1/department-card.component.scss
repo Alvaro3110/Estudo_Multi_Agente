@@ -1,0 +1,130 @@
+.card {
+  background: #fff;
+  border: 0.5px solid #E0E0E0;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.15s;
+  cursor: pointer;
+
+  &:hover { border-color: #EC0000; }
+
+  // 1. HEADER
+  .card-head {
+    padding: 14px 16px 10px;
+    display: flex; align-items: flex-start; gap: 12px;
+    border-bottom: 0.5px solid #F5F5F5;
+  }
+  .card-ico {
+    width: 36px; height: 36px; background: #FEF0F0;
+    border-radius: 8px; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; color: #EC0000;
+    svg { width: 16px; height: 16px; }
+  }
+  .card-name { font-size: 13px; font-weight: 500; color: #1A1A1A; margin-bottom: 4px; }
+  .card-status {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #F0FBF4; border: 0.5px solid #C8E6C9;
+    border-radius: 20px; padding: 2px 8px;
+    font-size: 10px; font-weight: 500; color: #2E7D32;
+  }
+  .card-status-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: #43A047;
+    animation: pulse 2s infinite;
+  }
+
+  // 2. MÉTRICAS
+  .card-metrics {
+    display: flex; border-bottom: 0.5px solid #F5F5F5;
+  }
+  .metric {
+    flex: 1; padding: 8px 12px;
+    border-right: 0.5px solid #F5F5F5;
+    &:last-child { border-right: none; }
+  }
+  .metric-lbl {
+    font-size: 9px; color: #BBB;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+  .metric-val {
+    font-size: 13px; font-weight: 500; color: #1A1A1A; line-height: 1;
+    &.trend-up   { color: #2E7D32; }
+    &.trend-down { color: #EC0000; }
+    &.trend-neutral { color: #1A1A1A; }
+  }
+
+  // 3. TEXTO CONVERSACIONAL
+  .card-summary {
+    padding: 10px 16px;
+    font-size: 11px; color: #666; line-height: 1.65;
+    border-bottom: 0.5px solid #F5F5F5;
+    b { color: #1A1A1A; font-weight: 500; }
+  }
+
+  // 4. FAROL
+  .card-farol {
+    padding: 10px 16px;
+    display: flex; flex-direction: column; gap: 5px;
+    flex: 1;
+  }
+  .farol-lbl {
+    font-size: 9px; font-weight: 500; color: #BBB;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 2px;
+  }
+  .farol-row {
+    display: flex; align-items: center; gap: 7px;
+  }
+  .farol-dot {
+    width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+    &.dot-green  { background: #43A047; }
+    &.dot-yellow { background: #F9A825; }
+    &.dot-red    { background: #EC0000; }
+  }
+  .farol-text {
+    font-size: 11px; color: #444; flex: 1;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .farol-val {
+    font-size: 10px; font-weight: 500; white-space: nowrap; flex-shrink: 0;
+    &.val-green  { color: #2E7D32; }
+    &.val-yellow { color: #E65100; }
+    &.val-red    { color: #B30000; }
+  }
+
+  // DIVISOR
+  .card-div { height: 0.5px; background: #F5F5F5; }
+
+  // 5. BOTÕES
+  .card-btns { display: flex; }
+  .btn-primary {
+    flex: 1; display: flex; align-items: center;
+    justify-content: center; gap: 5px;
+    padding: 10px; background: #EC0000; color: #fff;
+    border: none; font-size: 11px; font-weight: 500; cursor: pointer;
+    border-right: 0.5px solid rgba(255,255,255,0.15);
+    transition: background 0.12s;
+    svg { width: 12px; height: 12px; stroke: #fff; fill: none;
+          stroke-width: 2; stroke-linecap: round; }
+    &:hover { background: #B30000; }
+  }
+  .btn-secondary {
+    flex: 1; display: flex; align-items: center;
+    justify-content: center; gap: 5px;
+    padding: 10px; background: #fff; color: #EC0000;
+    border: none; border-top: 0.5px solid #F0F0F0;
+    font-size: 11px; font-weight: 500; cursor: pointer;
+    transition: background 0.12s;
+    svg { width: 12px; height: 12px; stroke: #EC0000; fill: none;
+          stroke-width: 2; stroke-linecap: round; }
+    &:hover { background: #FEF0F0; }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}

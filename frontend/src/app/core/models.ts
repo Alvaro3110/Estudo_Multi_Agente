@@ -1,4 +1,52 @@
 // ---- Dashboard ----
+export interface DepartmentIndicator {
+  label: string;
+  value: string;
+  status: 'green' | 'yellow' | 'red';
+}
+
+export interface DepartmentMetric {
+  label: string;
+  value: string;
+  trend: 'up' | 'down' | 'neutral';
+}
+
+export interface Department {
+  id: string;
+  name: string;
+  iconType: string;
+  efficiency: number;
+  status: 'ready' | 'processing' | 'error';
+  summary: string;
+  metrics: DepartmentMetric[];
+  indicators: DepartmentIndicator[];
+}
+
+export interface DeptAgent {
+  id: string;
+  name: string;                    // ex: "Agente de Fluxo de Caixa"
+  color: string;                   // hex da cor do avatar
+  iconType: string;                // tipo do ícone SVG
+  pillVariant: 'red' | 'blue' | 'green' | 'amber' | 'purple';
+  report: string;                  // texto narrativo do relatório (mock)
+  rowCount: number;                // registros analisados (mock)
+  status: 'done' | 'running';
+}
+
+export interface DeptReportConfig {
+  deptId: string;
+  deptName: string;
+  iconType: string;
+  iconColor: string;               // hex ex: '#EC0000'
+  iconBg: string;                  // hex ex: '#FEF0F0'
+  badgeText: string;               // ex: '1 alerta crítico'
+  badgeVariant: 'ok' | 'warn' | 'error';
+  kpis: DepartmentMetric[];        // exatamente 3
+  agents: DeptAgent[];             // 3 agentes especializados
+  indicators: DepartmentIndicator[]; // 4 indicadores do farol
+  summaryAfterReport: string;      // texto conclusivo pós-relatório
+}
+
 export interface DeptKpi {
   id: string;
   name: string;
