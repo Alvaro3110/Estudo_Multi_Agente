@@ -1,0 +1,855 @@
+[0;34m=== Bootstrapping Agente HITL ===[0m
+
+[0;32mLiberando portas...[0m
+Porta 8000 livre ✅
+Porta 4000 livre ✅
+Porta 4200 livre ✅
+[0;32mSubindo Backend...[0m
+Aguardando backend subir na porta 4000...
+...../home/alvarocruz/Documentos/Projeto_Completo/backend/main.py:36: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+/home/alvarocruz/Documentos/Projeto_Completo/backend/main.py:84: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("shutdown")
+INFO:     Will watch for changes in these directories: ['/home/alvarocruz/Documentos/Projeto_Completo/backend']
+INFO:     Uvicorn running on http://0.0.0.0:4000 (Press CTRL+C to quit)
+INFO:     Started reloader process [56814] using WatchFiles
+.....INFO:     Started server process [56869]
+INFO:     Waiting for application startup.
+2026-04-05 22:12:32,497 [INFO] main — 🔴 Santander AI Backend iniciando...
+2026-04-05 22:12:32,500 [INFO] app.core.fs_manager — [FS Lifecycle] 🚀 Executando cleanup de startup...
+2026-04-05 22:12:32,503 [INFO] app.core.fs_manager — [FS Lifecycle] 🗑️ Workspace expirado removido: 37551f9e-8ec0-4972-b54f-392cdaec8077
+2026-04-05 22:12:32,508 [INFO] main — 📁 FS Cleanup: {'workspaces_removidos': 1, 'logs_removidos': 0}
+2026-04-05 22:12:32,509 [INFO] main — 📊 FS Status: {'workspace': {'itens': 8, 'tamanho_kb': 18.7}, 'memories': {'itens': 0, 'tamanho_kb': 0.0}, 'logs': {'itens': 0, 'tamanho_kb': 0.0}, 'ttl_workspace_horas': 2.0}
+2026-04-05 22:12:32,509 [INFO] main —    Databricks: https://dbc-7b14f6e5-0360.cloud.databricks.com
+2026-04-05 22:12:32,509 [INFO] main —    Ambiente: development
+2026-04-05 22:12:32,509 [INFO] app.engine — [ENGINE] Compilando grafo multi-agente...
+2026-04-05 22:12:32,517 [INFO] app.engine — [ENGINE] Conexão SQLite aberta: app/checkpoints.sqlite
+2026-04-05 22:12:32,543 [INFO] main — ✅ Grafo LangGraph pré-compilado com sucesso.
+2026-04-05 22:12:32,544 [INFO] main — [WARMUP] Iniciando pré-aquecimento do cache Databricks...
+2026-04-05 22:12:32,545 [INFO] app.graph.nodes.scanner — [NODE] Data Scanner explorando whitelist (com cache): ['sales_transactions', 'products', 'financials', 'logistics_shipments', 'customers']
+INFO:     Application startup complete.
+2026-04-05 22:12:32,545 [INFO] app.graph.nodes.scanner — [Scanner] Cache MISS — buscando schema: sales_transactions
+2026-04-05 22:12:32,546 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:12:32,591 [INFO] watchfiles.main — 4 changes detected
+.
+[0;32mBackend OK (PID: 56814)[0m
+[0;32mSubindo Frontend...[0m
+[0;34mSistema em execução 🚀[0m
+
+> frontend@0.0.0 start
+> ng serve --open
+
+2026-04-05 22:12:34,126 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:12:34,126 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:12:34,127 [INFO] databricks.sql.session — Successfully opened session 01f13155-b113-14ce-8360-3420254cf9a3
+2026-04-05 22:12:34,699 [INFO] databricks.sql.auth.retry — Received status code 200 for GET request
+2026-04-05 22:12:34,941 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:12:34,941 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+- Building...
+
+Initial chunk files | Names         |  Raw size
+main.js             | main          | 438.06 kB | 
+polyfills.js        | polyfills     |  88.09 kB | 
+styles.css          | styles        |   4.06 kB | 
+
+                    | Initial total | 530.21 kB
+
+Application bundle generation complete. [6.717 seconds]
+
+Watch mode enabled. Watching for file changes...
+  ➜  Local:   http://localhost:4200/
+2026-04-05 22:12:45,140 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:12:45,142 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:12:47,154 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:12:47,155 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:12:51,021 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:12:51,022 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:12:51,345 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:12:51,346 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:12:51,750 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:12:51,750 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:12:52,045 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:12:52,045 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:12:53,555 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:12:53,555 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:12:53,560 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: DESCRIBE TABLE sales_transactions LIMIT 50...
+2026-04-05 22:12:58,956 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:12:58,956 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:03,608 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:03,609 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:03,912 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:03,912 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:04,277 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:04,277 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:04,794 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:04,794 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:04,794 [INFO] app.graph.nodes.scanner — [Scanner] Cache MISS — buscando schema: products
+2026-04-05 22:13:04,794 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:05,579 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:05,579 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:05,579 [INFO] databricks.sql.session — Successfully opened session 01f13155-c3ee-16e1-b6d9-b457261ae886
+2026-04-05 22:13:06,503 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:06,504 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:07,201 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:07,201 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:07,202 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: DESCRIBE TABLE products LIMIT 50...
+2026-04-05 22:13:09,520 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:09,520 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:09,534 [INFO] app.graph.nodes.scanner — [Scanner] Cache MISS — buscando schema: financials
+2026-04-05 22:13:09,536 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:10,334 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:10,334 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:10,335 [INFO] databricks.sql.session — Successfully opened session 01f13155-c6c5-13bf-a4d4-05b2f131ea45
+2026-04-05 22:13:11,230 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:11,231 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:11,911 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:11,911 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:11,913 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: DESCRIBE TABLE financials LIMIT 50...
+2026-04-05 22:13:13,862 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:13,863 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:13,869 [INFO] app.graph.nodes.scanner — [Scanner] Cache MISS — buscando schema: logistics_shipments
+2026-04-05 22:13:13,869 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:14,664 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:14,664 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:14,666 [INFO] databricks.sql.session — Successfully opened session 01f13155-c95d-1731-a144-0aee63e7e371
+2026-04-05 22:13:15,280 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:15,281 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:15,817 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:15,817 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:15,820 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: DESCRIBE TABLE logistics_shipments LIMIT 50...
+2026-04-05 22:13:16,969 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:16,970 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:16,973 [INFO] app.graph.nodes.scanner — [Scanner] Cache MISS — buscando schema: customers
+2026-04-05 22:13:16,973 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:17,712 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:17,712 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:17,712 [INFO] databricks.sql.session — Successfully opened session 01f13155-cb2e-15f5-b147-716575c17106
+2026-04-05 22:13:18,397 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:18,397 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:18,905 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:18,905 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:18,909 [INFO] databricks.sql.session — Closing session 01f13155-c3ee-16e1-b6d9-b457261ae886
+2026-04-05 22:13:19,607 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:19,607 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:19,609 [INFO] databricks.sql.session — Closing session 01f13155-c6c5-13bf-a4d4-05b2f131ea45
+2026-04-05 22:13:20,315 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:20,315 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:20,317 [INFO] databricks.sql.session — Closing session 01f13155-c95d-1731-a144-0aee63e7e371
+2026-04-05 22:13:20,937 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:20,937 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:20,947 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: DESCRIBE TABLE customers LIMIT 50...
+2026-04-05 22:13:21,858 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:21,858 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:21,861 [INFO] app.graph.nodes.semantic_layer — [NODE] Semantic Layer detectando categorias (paralelo + cache)...
+2026-04-05 22:13:21,863 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:21,864 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:21,864 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:21,865 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:21,865 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:22,693 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:22,694 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:22,695 [INFO] databricks.sql.session — Successfully opened session 01f13155-ce26-1bc8-b86c-8a7388ae73a8
+2026-04-05 22:13:22,838 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:22,838 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:22,839 [INFO] databricks.sql.session — Successfully opened session 01f13155-ce36-1dbc-bbbb-b5f27547d8db
+2026-04-05 22:13:22,845 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:22,845 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:22,846 [INFO] databricks.sql.session — Successfully opened session 01f13155-ce3d-19b5-900b-45edc2cc7c45
+2026-04-05 22:13:22,860 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:22,860 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:22,861 [INFO] databricks.sql.session — Successfully opened session 01f13155-ce40-12da-bfc9-d0bd9682cb81
+2026-04-05 22:13:22,869 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:22,869 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:22,869 [INFO] databricks.sql.session — Successfully opened session 01f13155-ce3d-1330-97f5-76cf02f4a7f1
+2026-04-05 22:13:23,680 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:23,680 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:23,790 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:23,790 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:24,007 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:24,007 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:24,075 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:24,075 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:24,184 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:24,184 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:24,849 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:24,849 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:24,851 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT transaction_id FROM sales_transactions LIMIT 10...
+2026-04-05 22:13:24,903 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:24,903 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:24,905 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT customer_id FROM sales_transactions LIMIT 10...
+2026-04-05 22:13:25,036 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:25,036 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:25,038 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT product_id FROM sales_transactions LIMIT 10...
+2026-04-05 22:13:25,117 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:25,118 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:25,119 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT region FROM sales_transactions LIMIT 10...
+2026-04-05 22:13:25,129 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:25,129 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:25,131 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT product_id FROM products LIMIT 10...
+2026-04-05 22:13:27,283 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:27,283 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:27,287 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:27,352 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:27,352 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:27,370 [INFO] databricks.sql.session — Closing session 01f13155-cb2e-15f5-b147-716575c17106
+2026-04-05 22:13:27,378 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:27,378 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:27,382 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:27,620 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:27,620 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:27,622 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:27,622 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:27,626 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:27,628 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:27,989 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:27,989 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:27,990 [INFO] databricks.sql.session — Successfully opened session 01f13155-d14e-1c6e-b1ca-db46888db0f9
+2026-04-05 22:13:28,030 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:28,030 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:28,032 [INFO] databricks.sql.session — Closing session 01f13155-ce3d-19b5-900b-45edc2cc7c45
+2026-04-05 22:13:28,123 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:28,123 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:28,123 [INFO] databricks.sql.session — Successfully opened session 01f13155-d163-1d23-b49d-07ec77f18dd8
+2026-04-05 22:13:28,385 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:28,385 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:28,385 [INFO] databricks.sql.session — Successfully opened session 01f13155-d18c-1af7-8fc4-8ac871462f15
+2026-04-05 22:13:28,430 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:28,430 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:28,431 [INFO] databricks.sql.session — Successfully opened session 01f13155-d193-1511-8835-f8e999d84db5
+2026-04-05 22:13:28,694 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:28,694 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:28,704 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:29,180 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:29,180 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:29,330 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:29,330 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:29,420 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:29,420 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:29,421 [INFO] databricks.sql.session — Successfully opened session 01f13155-d228-1f31-8372-1a25e70650b2
+2026-04-05 22:13:29,422 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:29,423 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:29,572 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:29,572 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:29,785 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:29,786 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:29,788 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT product_name FROM products LIMIT 10...
+2026-04-05 22:13:29,991 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:29,991 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:29,994 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT customer_id FROM financials LIMIT 10...
+2026-04-05 22:13:30,072 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:30,072 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:30,096 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:30,096 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:30,098 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT category FROM products LIMIT 10...
+2026-04-05 22:13:30,748 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:30,749 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:30,750 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT transaction_id FROM financials LIMIT 10...
+2026-04-05 22:13:30,881 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:30,881 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:30,882 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT product_id FROM financials LIMIT 10...
+2026-04-05 22:13:31,372 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:31,372 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:31,374 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:31,661 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:31,662 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:31,666 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:31,733 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:31,733 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:31,736 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:32,039 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:32,039 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:32,040 [INFO] databricks.sql.session — Successfully opened session 01f13155-d3b8-197a-8b55-28e7d7cf15a2
+2026-04-05 22:13:32,175 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:32,175 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:32,177 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:32,241 [INFO] databricks.sql.session — Closing session 01f13155-d163-1d23-b49d-07ec77f18dd8
+2026-04-05 22:13:32,335 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:32,335 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:32,336 [INFO] databricks.sql.session — Successfully opened session 01f13155-d3e5-19d6-af2a-319518185cae
+2026-04-05 22:13:32,361 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:32,361 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:32,369 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:32,451 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:32,451 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:32,452 [INFO] databricks.sql.session — Successfully opened session 01f13155-d3f8-1d12-8283-0da874a7852f
+2026-04-05 22:13:32,681 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:32,681 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:32,926 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:32,926 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:32,927 [INFO] databricks.sql.session — Closing session 01f13155-d18c-1af7-8fc4-8ac871462f15
+2026-04-05 22:13:32,929 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:32,929 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:33,045 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:33,045 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:33,046 [INFO] databricks.sql.session — Successfully opened session 01f13155-d453-14d4-bbbf-fbf04534c075
+2026-04-05 22:13:33,096 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:33,096 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:33,309 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:33,309 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:33,311 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT region FROM financials LIMIT 10...
+2026-04-05 22:13:33,664 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:33,664 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:33,666 [INFO] databricks.sql.session — Closing session 01f13155-d193-1511-8835-f8e999d84db5
+2026-04-05 22:13:33,723 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:33,723 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:33,726 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT transaction_id FROM logistics_shipments LIMIT 10...
+2026-04-05 22:13:33,918 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:33,918 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:33,920 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:33,920 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:33,920 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT shipment_id FROM logistics_shipments LIMIT 10...
+2026-04-05 22:13:34,334 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:34,335 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:34,700 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:34,700 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:34,704 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT warehouse_region FROM logistics_shipments LIMIT 10...
+2026-04-05 22:13:34,798 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:34,798 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:34,801 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:34,873 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:34,873 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:34,876 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:34,998 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:34,998 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:34,999 [INFO] databricks.sql.session — Successfully opened session 01f13155-d57c-1e79-9be0-5372714809d8
+2026-04-05 22:13:35,041 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:35,041 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:35,044 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:35,514 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:35,514 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:35,515 [INFO] databricks.sql.session — Successfully opened session 01f13155-d5cb-1386-9d41-5291c395dc4d
+2026-04-05 22:13:35,597 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:35,597 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:35,600 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:13:35,626 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:35,627 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:35,628 [INFO] databricks.sql.session — Successfully opened session 01f13155-d5db-1cf4-a86a-4373623bcf1c
+2026-04-05 22:13:35,791 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:35,793 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:35,803 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:35,803 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:35,804 [INFO] databricks.sql.session — Successfully opened session 01f13155-d5f6-1937-bb75-6fc403dea7ad
+2026-04-05 22:13:36,139 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:36,139 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:36,311 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:36,312 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:36,313 [INFO] databricks.sql.session — Successfully opened session 01f13155-d644-1e55-a5d3-71ba186c524b
+2026-04-05 22:13:36,403 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:36,403 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:36,760 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:36,761 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:36,763 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT status FROM logistics_shipments LIMIT 10...
+2026-04-05 22:13:36,860 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:36,860 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:36,863 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT customer_id FROM customers LIMIT 10...
+2026-04-05 22:13:36,897 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:36,898 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:36,918 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:36,918 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:37,296 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:37,299 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:37,303 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT name FROM customers LIMIT 10...
+2026-04-05 22:13:37,915 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:37,916 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:37,919 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT segment FROM customers LIMIT 10...
+2026-04-05 22:13:37,962 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:37,962 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:37,965 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT DISTINCT region FROM customers LIMIT 10...
+2026-04-05 22:13:38,098 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:38,098 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:38,658 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:38,659 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:38,780 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:38,780 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:39,242 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:39,242 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:39,305 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:13:39,305 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:13:39,308 [INFO] app.graph.nodes.semantic_layer — [SemanticLayer] 19 mapeamentos concluídos (19 colunas processadas em paralelo).
+2026-04-05 22:13:39,309 [INFO] main — [WARMUP] ✅ Cache de schemas pronto — primeira query será rápida.
+2026-04-05 22:15:05,495 [INFO] databricks.sql.session — Closing session 01f13155-d453-14d4-bbbf-fbf04534c075
+2026-04-05 22:15:06,398 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:06,398 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:06,400 [INFO] databricks.sql.session — Closing session 01f13155-d5cb-1386-9d41-5291c395dc4d
+2026-04-05 22:15:07,036 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:07,036 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:07,037 [INFO] databricks.sql.session — Closing session 01f13155-d5db-1cf4-a86a-4373623bcf1c
+2026-04-05 22:15:07,687 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:07,687 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:07,690 [INFO] databricks.sql.session — Closing session 01f13155-d5f6-1937-bb75-6fc403dea7ad
+2026-04-05 22:15:08,383 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:08,384 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:08,386 [INFO] databricks.sql.session — Closing session 01f13155-d644-1e55-a5d3-71ba186c524b
+2026-04-05 22:15:09,188 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:09,188 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:09,227 [INFO] main — 🔍 [REQUEST] OPTIONS http://localhost:4000/api/auth/login
+2026-04-05 22:15:09,228 [INFO] main — 📊 [RESPONSE] OPTIONS http://localhost:4000/api/auth/login - 200
+INFO:     127.0.0.1:49466 - "OPTIONS /api/auth/login HTTP/1.1" 200 OK
+2026-04-05 22:15:09,231 [INFO] main — 🔍 [REQUEST] POST http://localhost:4000/api/auth/login
+2026-04-05 22:15:09,243 [INFO] app.api.routes.auth — [AUTH/LOGIN] Tentativa de login para matrícula: admin
+2026-04-05 22:15:09,744 [INFO] app.api.routes.auth — [AUTH/LOGIN] Login bem-sucedido para: admin
+2026-04-05 22:15:09,748 [INFO] main — 📊 [RESPONSE] POST http://localhost:4000/api/auth/login - 200
+INFO:     127.0.0.1:46214 - "POST /api/auth/login HTTP/1.1" 200 OK
+2026-04-05 22:15:41,159 [INFO] main — 🔍 [REQUEST] OPTIONS http://localhost:4000/api/agent/chat
+2026-04-05 22:15:41,162 [INFO] main — 📊 [RESPONSE] OPTIONS http://localhost:4000/api/agent/chat - 200
+INFO:     127.0.0.1:58298 - "OPTIONS /api/agent/chat HTTP/1.1" 200 OK
+2026-04-05 22:15:41,172 [INFO] main — 🔍 [REQUEST] POST http://localhost:4000/api/agent/chat
+2026-04-05 22:15:41,181 [INFO] app.api.routes.agent — [AGENT] Nova sessão: 7e120801-39cc-47bf-9a80-c5b062763af0 | Dept: auto | Grupo: Varejo Digital SP
+2026-04-05 22:15:41,186 [INFO] main — 📊 [RESPONSE] POST http://localhost:4000/api/agent/chat - 200
+INFO:     127.0.0.1:58314 - "POST /api/agent/chat HTTP/1.1" 200 OK
+2026-04-05 22:15:41,229 [INFO] app.graph.nodes.transformer — [NODE] Transformer processando query: Vendas vs metas de eletr
+2026-04-05 22:15:41,235 [INFO] app.graph.nodes.transformer — [NODE] Transformer chamando LLM e injetando Memória LTM...
+2026-04-05 22:15:41,308 [INFO] watchfiles.main — 2 changes detected
+2026-04-05 22:15:42,042 [INFO] databricks.sql.session — Closing session 01f13155-d228-1f31-8372-1a25e70650b2
+2026-04-05 22:15:42,785 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:42,785 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:42,787 [INFO] databricks.sql.session — Closing session 01f13155-d3b8-197a-8b55-28e7d7cf15a2
+2026-04-05 22:15:43,498 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:43,498 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:43,499 [INFO] databricks.sql.session — Closing session 01f13155-d3e5-19d6-af2a-319518185cae
+2026-04-05 22:15:44,158 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:44,158 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:44,159 [INFO] databricks.sql.session — Closing session 01f13155-d3f8-1d12-8283-0da874a7852f
+2026-04-05 22:15:44,789 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:44,789 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:44,791 [INFO] databricks.sql.session — Closing session 01f13155-d57c-1e79-9be0-5372714809d8
+2026-04-05 22:15:45,405 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:45,405 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:45,720 [INFO] databricks.sql.session — Closing session 01f13155-ce40-12da-bfc9-d0bd9682cb81
+2026-04-05 22:15:46,399 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:46,399 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:46,402 [INFO] databricks.sql.session — Closing session 01f13155-ce3d-1330-97f5-76cf02f4a7f1
+2026-04-05 22:15:47,040 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:47,040 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:47,042 [INFO] databricks.sql.session — Closing session 01f13155-ce26-1bc8-b86c-8a7388ae73a8
+2026-04-05 22:15:47,719 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:47,719 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:47,723 [INFO] databricks.sql.session — Closing session 01f13155-ce36-1dbc-bbbb-b5f27547d8db
+2026-04-05 22:15:48,430 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:48,430 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:48,433 [INFO] databricks.sql.session — Closing session 01f13155-d14e-1c6e-b1ca-db46888db0f9
+2026-04-05 22:15:52,220 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:15:52,220 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:15:58,959 [INFO] app.graph.nodes.transformer — [NODE] Transformer recebeu resposta do LLM.
+2026-04-05 22:15:58,969 [INFO] app.graph.nodes.planner — [NODE] Planner criando estratégia...
+2026-04-05 22:15:59,067 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:16:06,693 [INFO] app.graph.nodes.planner — [PLANNER] Plano salvo em: /home/alvarocruz/Documentos/Projeto_Completo/backend/workspace/bd4671ed-b5c5-40d3-95fd-4e4e9eb7c2ce/plano_execucao.md
+2026-04-05 22:16:06,694 [INFO] app.graph.nodes.scanner — [NODE] Data Scanner explorando whitelist (com cache): ['sales_transactions', 'products', 'financials', 'logistics_shipments', 'customers']
+2026-04-05 22:16:06,694 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: sales_transactions
+2026-04-05 22:16:06,694 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: products
+2026-04-05 22:16:06,695 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: financials
+2026-04-05 22:16:06,695 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: logistics_shipments
+2026-04-05 22:16:06,695 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: customers
+2026-04-05 22:16:06,696 [INFO] app.graph.nodes.semantic_layer — [NODE] Semantic Layer detectando categorias (paralelo + cache)...
+2026-04-05 22:16:06,699 [INFO] app.graph.nodes.semantic_layer — [SemanticLayer] 19 mapeamentos concluídos (19 colunas processadas em paralelo).
+2026-04-05 22:16:06,703 [INFO] app.graph.nodes.router — [NODE] Router direcionando tráfego...
+2026-04-05 22:16:06,787 [INFO] watchfiles.main — 2 changes detected
+2026-04-05 22:16:08,930 [INFO] app.engine — [ENGINE] Fan-out para agentes: ['agente_vendas', 'agente_financeiro']
+2026-04-05 22:16:08,993 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:16:14,008 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:16:14,905 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:14,905 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:14,906 [INFO] databricks.sql.session — Successfully opened session 01f13156-34c9-1699-919b-ecbde0666e5d
+2026-04-05 22:16:15,425 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:16:15,512 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:15,512 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:15,928 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:15,928 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:15,933 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT 
+    product_id,
+    SUM(quantity) AS total_sales,
+    SUM(total_amount) AS total_revenue,
+  ...
+2026-04-05 22:16:16,339 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:16,339 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:16,340 [INFO] databricks.sql.session — Successfully opened session 01f13156-35a3-154e-9a15-0ceffa82387a
+2026-04-05 22:16:16,954 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:16,954 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:17,175 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:17,176 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:17,178 [INFO] databricks.sql.session — Closing session 01f13156-34c9-1699-919b-ecbde0666e5d
+2026-04-05 22:16:17,366 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:17,367 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:17,368 [ERROR] utils.db_connector — [Databricks] Erro ao executar query: [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `payment_method` cannot be resolved. Did you mean one of the following? [`customer_id`, `quantity`, `channel`, `product_id`, `unit_price`]. SQLSTATE: 42703; line 5 pos 4
+2026-04-05 22:16:17,503 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:17,504 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:17,506 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT 
+    st.transaction_date,
+    SUM(st.total_amount) AS total_sales,
+    COUNT(st.transaction_i...
+2026-04-05 22:16:17,959 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:20,099 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:16:20,870 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:20,870 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:20,870 [INFO] databricks.sql.session — Successfully opened session 01f13156-3858-1a9d-b4a3-564938045656
+2026-04-05 22:16:21,392 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:21,392 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:21,825 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:21,825 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:21,829 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT 
+    st.product_id,
+    SUM(st.quantity) AS total_sales,
+    SUM(st.total_amount) AS total_re...
+2026-04-05 22:16:22,827 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:22,827 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:27,192 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:27,192 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:28,070 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:28,070 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:30,572 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:30,572 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:30,770 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:30,770 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:31,049 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:31,050 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:31,204 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:31,204 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:31,370 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:31,370 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:31,395 [INFO] databricks.sql.session — Closing session 01f13156-3858-1a9d-b4a3-564938045656
+2026-04-05 22:16:31,470 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:31,470 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:31,674 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:31,674 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:31,899 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:31,900 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:32,094 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:32,095 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:44,272 [INFO] watchfiles.main — 5 changes detected
+2026-04-05 22:16:44,314 [INFO] databricks.sql.session — Closing session 01f13156-35a3-154e-9a15-0ceffa82387a
+2026-04-05 22:16:44,623 [INFO] watchfiles.main — 3 changes detected
+2026-04-05 22:16:45,018 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:16:45,019 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:16:45,174 [INFO] watchfiles.main — 4 changes detected
+2026-04-05 22:16:52,292 [INFO] watchfiles.main — 5 changes detected
+2026-04-05 22:16:52,303 [INFO] app.graph.nodes.consolidador — [NODE] Consolidador unificando inteligência...
+2026-04-05 22:16:52,643 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:17:10,979 [INFO] app.graph.nodes.gepa — [NODE] GEPA revisando qualidade final...
+2026-04-05 22:17:11,049 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:17:25,991 [INFO] app.graph.nodes.juiz — [NODE] Juiz avaliando consistência...
+2026-04-05 22:17:26,086 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:17:28,774 [INFO] app.graph.nodes.juiz — [JUIZ] Veredito final: replanejar
+2026-04-05 22:17:28,780 [INFO] app.graph.nodes.planner — [NODE] Planner criando estratégia...
+2026-04-05 22:17:28,804 [INFO] app.graph.nodes.planner — [PLANNER] Plano salvo em: /home/alvarocruz/Documentos/Projeto_Completo/backend/workspace/bd4671ed-b5c5-40d3-95fd-4e4e9eb7c2ce/plano_execucao.md
+2026-04-05 22:17:28,805 [INFO] app.graph.nodes.scanner — [NODE] Data Scanner explorando whitelist (com cache): ['sales_transactions', 'products', 'financials', 'logistics_shipments', 'customers']
+2026-04-05 22:17:28,806 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: sales_transactions
+2026-04-05 22:17:28,807 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: products
+2026-04-05 22:17:28,808 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: financials
+2026-04-05 22:17:28,808 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: logistics_shipments
+2026-04-05 22:17:28,808 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: customers
+2026-04-05 22:17:28,809 [INFO] app.graph.nodes.semantic_layer — [NODE] Semantic Layer detectando categorias (paralelo + cache)...
+2026-04-05 22:17:28,813 [INFO] app.graph.nodes.semantic_layer — [SemanticLayer] 19 mapeamentos concluídos (19 colunas processadas em paralelo).
+2026-04-05 22:17:28,815 [INFO] app.graph.nodes.router — [NODE] Router direcionando tráfego...
+2026-04-05 22:17:28,827 [INFO] app.engine — [ENGINE] Fan-out para agentes: ['agente_vendas', 'agente_financeiro']
+2026-04-05 22:17:28,839 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:17:28,841 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:17:28,897 [INFO] watchfiles.main — 2 changes detected
+2026-04-05 22:17:29,745 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:29,745 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:29,747 [INFO] databricks.sql.session — Successfully opened session 01f13156-6167-1907-bf57-48ae4a817cf2
+2026-04-05 22:17:29,789 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:29,790 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:29,791 [INFO] databricks.sql.session — Successfully opened session 01f13156-616d-14fb-9a8c-8372d04b52da
+2026-04-05 22:17:30,233 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:30,233 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:30,321 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:30,321 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:30,642 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:30,642 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:30,644 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT 
+    product_id,
+    SUM(quantity) AS total_sales,
+    SUM(total_amount) AS total_revenue,
+  ...
+2026-04-05 22:17:30,750 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:30,750 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:30,753 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT 
+    st.transaction_date,
+    SUM(st.total_amount) AS total_sales,
+    COUNT(st.transaction_i...
+2026-04-05 22:17:31,361 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:31,361 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:31,364 [INFO] databricks.sql.session — Closing session 01f13156-6167-1907-bf57-48ae4a817cf2
+2026-04-05 22:17:31,443 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:31,444 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:31,513 [INFO] databricks.sql.session — Closing session 01f13156-616d-14fb-9a8c-8372d04b52da
+2026-04-05 22:17:31,552 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:31,552 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:31,555 [ERROR] utils.db_connector — [Databricks] Erro ao executar query: [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `payment_method` cannot be resolved. Did you mean one of the following? [`customer_id`, `quantity`, `channel`, `product_id`, `unit_price`]. SQLSTATE: 42703; line 5 pos 4
+2026-04-05 22:17:31,563 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:17:32,165 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:32,165 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:32,257 [INFO] watchfiles.main — 5 changes detected
+2026-04-05 22:17:32,296 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:32,299 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:32,300 [INFO] databricks.sql.session — Successfully opened session 01f13156-62ec-18b8-9387-278baed4e1a4
+2026-04-05 22:17:32,611 [INFO] watchfiles.main — 5 changes detected
+2026-04-05 22:17:32,936 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:32,936 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:33,446 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:33,447 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:33,450 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT 
+    st.product_id,
+    SUM(st.quantity) AS total_sales,
+    SUM(st.total_amount) AS total_re...
+2026-04-05 22:17:34,064 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:34,064 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:34,164 [INFO] databricks.sql.session — Closing session 01f13156-62ec-18b8-9387-278baed4e1a4
+2026-04-05 22:17:34,171 [INFO] watchfiles.main — 5 changes detected
+2026-04-05 22:17:34,985 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:34,985 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:35,052 [INFO] app.graph.nodes.consolidador — [NODE] Consolidador unificando inteligência...
+2026-04-05 22:17:35,061 [INFO] app.graph.nodes.gepa — [NODE] GEPA revisando qualidade final...
+2026-04-05 22:17:35,072 [INFO] app.graph.nodes.juiz — [NODE] Juiz avaliando consistência...
+2026-04-05 22:17:35,077 [INFO] app.graph.nodes.juiz — [JUIZ] Veredito final: replanejar
+2026-04-05 22:17:35,079 [INFO] app.graph.nodes.planner — [NODE] Planner criando estratégia...
+2026-04-05 22:17:35,086 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:35,090 [INFO] app.graph.nodes.planner — [PLANNER] Plano salvo em: /home/alvarocruz/Documentos/Projeto_Completo/backend/workspace/bd4671ed-b5c5-40d3-95fd-4e4e9eb7c2ce/plano_execucao.md
+2026-04-05 22:17:35,091 [INFO] app.graph.nodes.scanner — [NODE] Data Scanner explorando whitelist (com cache): ['sales_transactions', 'products', 'financials', 'logistics_shipments', 'customers']
+2026-04-05 22:17:35,092 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: sales_transactions
+2026-04-05 22:17:35,092 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: products
+2026-04-05 22:17:35,092 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: financials
+2026-04-05 22:17:35,092 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: logistics_shipments
+2026-04-05 22:17:35,092 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: customers
+2026-04-05 22:17:35,093 [INFO] app.graph.nodes.semantic_layer — [NODE] Semantic Layer detectando categorias (paralelo + cache)...
+2026-04-05 22:17:35,101 [INFO] app.graph.nodes.semantic_layer — [SemanticLayer] 19 mapeamentos concluídos (19 colunas processadas em paralelo).
+2026-04-05 22:17:35,102 [INFO] app.graph.nodes.router — [NODE] Router direcionando tráfego...
+2026-04-05 22:17:35,107 [INFO] app.engine — [ENGINE] Fan-out para agentes: ['agente_vendas', 'agente_financeiro']
+2026-04-05 22:17:35,114 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:17:35,119 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:17:35,174 [INFO] watchfiles.main — 5 changes detected
+2026-04-05 22:17:36,219 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:36,219 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:36,220 [INFO] databricks.sql.session — Successfully opened session 01f13156-6543-19fa-9833-370855f4f294
+2026-04-05 22:17:36,222 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:36,222 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:36,223 [INFO] databricks.sql.session — Successfully opened session 01f13156-6543-1913-8584-7bf9dd5cc1bf
+2026-04-05 22:17:36,788 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:36,788 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:36,835 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:36,835 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:37,360 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:37,360 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:37,363 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT 
+    product_id,
+    SUM(quantity) AS total_sales,
+    SUM(total_amount) AS total_revenue,
+  ...
+2026-04-05 22:17:37,392 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:37,392 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:37,394 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT 
+    st.transaction_date,
+    SUM(st.total_amount) AS total_sales,
+    COUNT(st.transaction_i...
+2026-04-05 22:17:38,016 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:38,016 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:38,108 [INFO] databricks.sql.session — Closing session 01f13156-6543-19fa-9833-370855f4f294
+2026-04-05 22:17:38,118 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:38,122 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:38,126 [INFO] databricks.sql.session — Closing session 01f13156-6543-1913-8584-7bf9dd5cc1bf
+2026-04-05 22:17:38,191 [INFO] watchfiles.main — 3 changes detected
+2026-04-05 22:17:38,330 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:38,330 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:38,332 [ERROR] utils.db_connector — [Databricks] Erro ao executar query: [UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `payment_method` cannot be resolved. Did you mean one of the following? [`customer_id`, `quantity`, `channel`, `product_id`, `unit_price`]. SQLSTATE: 42703; line 5 pos 4
+2026-04-05 22:17:38,349 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:17:38,778 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:38,779 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:38,902 [INFO] watchfiles.main — 4 changes detected
+2026-04-05 22:17:39,187 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:39,187 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:39,191 [INFO] databricks.sql.session — Successfully opened session 01f13156-6707-1db7-b0b9-4d61f91f81a1
+2026-04-05 22:17:39,255 [INFO] watchfiles.main — 4 changes detected
+2026-04-05 22:17:39,814 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:39,815 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:40,180 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:40,181 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:40,184 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT 
+    st.product_id,
+    SUM(st.quantity) AS total_sales,
+    SUM(st.total_amount) AS total_re...
+2026-04-05 22:17:40,616 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:17:40,619 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:17:40,810 [INFO] watchfiles.main — 5 changes detected
+2026-04-05 22:17:40,896 [INFO] app.graph.nodes.consolidador — [NODE] Consolidador unificando inteligência...
+2026-04-05 22:17:40,911 [INFO] app.graph.nodes.gepa — [NODE] GEPA revisando qualidade final...
+2026-04-05 22:17:40,917 [INFO] app.graph.nodes.juiz — [NODE] Juiz avaliando consistência...
+2026-04-05 22:17:40,922 [INFO] app.graph.nodes.juiz — [JUIZ] Veredito final: replanejar
+2026-04-05 22:17:40,922 [WARNING] app.engine — [ENGINE] Limite de replanejamento atingido. Forçando finalização.
+2026-04-05 22:17:40,923 [INFO] app.graph.nodes.memorizador — [NODE] Memorizador salvando insights LTM...
+2026-04-05 22:17:41,165 [INFO] watchfiles.main — 6 changes detected
+2026-04-05 22:17:44,733 [INFO] app.core.persona_store — [LTM] Preferência aprendida para user 'Carlos': O usuário está interessado na comparação entre vendas e metas de produtos eletrônicos.
+2026-04-05 22:17:44,742 [INFO] app.graph.nodes.memorizador — [LTM] Novo insight memorizado: O usuário está interessado na comparação entre vendas e metas de produtos eletrônicos.
+2026-04-05 22:17:44,851 [INFO] watchfiles.main — 4 changes detected
+2026-04-05 22:19:50,285 [INFO] main — 🔍 [REQUEST] POST http://localhost:4000/api/agent/chat
+2026-04-05 22:19:50,314 [INFO] app.api.routes.agent — [AGENT] Nova sessão: 026e04ca-95c6-421c-af37-f273f1e59423 | Dept: auto | Grupo: Varejo Digital SP
+2026-04-05 22:19:50,328 [INFO] main — 📊 [RESPONSE] POST http://localhost:4000/api/agent/chat - 200
+INFO:     127.0.0.1:49320 - "POST /api/agent/chat HTTP/1.1" 200 OK
+2026-04-05 22:19:50,363 [INFO] app.graph.nodes.transformer — [NODE] Transformer processando query: Vendas vs metas de eletronicos no Sudeste ultimo mes
+2026-04-05 22:19:50,367 [INFO] app.graph.nodes.transformer — [NODE] Transformer chamando LLM e injetando Memória LTM...
+2026-04-05 22:19:50,422 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:19:56,049 [INFO] app.graph.nodes.transformer — [NODE] Transformer recebeu resposta do LLM.
+2026-04-05 22:19:56,056 [INFO] app.graph.nodes.planner — [NODE] Planner criando estratégia...
+2026-04-05 22:19:56,134 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:20:03,732 [INFO] app.graph.nodes.planner — [PLANNER] Plano salvo em: /home/alvarocruz/Documentos/Projeto_Completo/backend/workspace/bb9250b4-832e-48db-a747-8fca653a9adc/plano_execucao.md
+2026-04-05 22:20:03,741 [INFO] app.graph.nodes.scanner — [NODE] Data Scanner explorando whitelist (com cache): ['sales_transactions', 'products', 'financials', 'logistics_shipments', 'customers']
+2026-04-05 22:20:03,746 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: sales_transactions
+2026-04-05 22:20:03,746 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: products
+2026-04-05 22:20:03,746 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: financials
+2026-04-05 22:20:03,746 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: logistics_shipments
+2026-04-05 22:20:03,748 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: customers
+2026-04-05 22:20:03,750 [INFO] app.graph.nodes.semantic_layer — [NODE] Semantic Layer detectando categorias (paralelo + cache)...
+2026-04-05 22:20:03,758 [INFO] app.graph.nodes.semantic_layer — [SemanticLayer] 19 mapeamentos concluídos (19 colunas processadas em paralelo).
+2026-04-05 22:20:03,760 [INFO] app.graph.nodes.router — [NODE] Router direcionando tráfego...
+2026-04-05 22:20:03,809 [INFO] watchfiles.main — 2 changes detected
+2026-04-05 22:20:07,001 [INFO] app.engine — [ENGINE] Fan-out para agentes: ['agente_vendas']
+2026-04-05 22:20:07,079 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:20:10,100 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:20:11,251 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:20:11,253 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:20:11,255 [INFO] databricks.sql.session — Successfully opened session 01f13156-c1a8-1731-ba00-0053a0590ada
+2026-04-05 22:20:11,763 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:20:11,763 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:20:12,172 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:20:12,172 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:20:12,176 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT 
+    st.product_id,
+    p.product_name,
+    SUM(st.total_amount) AS total_sales,
+    COUNT(st...
+2026-04-05 22:20:14,126 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:20:14,128 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:20:26,350 [INFO] databricks.sql.session — Closing session 01f13156-6707-1db7-b0b9-4d61f91f81a1
+2026-04-05 22:20:26,418 [INFO] watchfiles.main — 2 changes detected
+2026-04-05 22:20:27,237 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:20:27,238 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:20:27,242 [INFO] databricks.sql.session — Closing session 01f13156-c1a8-1731-ba00-0053a0590ada
+2026-04-05 22:20:28,159 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:20:28,163 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:20:28,286 [INFO] watchfiles.main — 3 changes detected
+2026-04-05 22:20:28,329 [INFO] app.graph.nodes.consolidador — [NODE] Consolidador unificando inteligência...
+2026-04-05 22:20:28,650 [INFO] watchfiles.main — 4 changes detected
+2026-04-05 22:20:59,896 [INFO] app.graph.nodes.gepa — [NODE] GEPA revisando qualidade final...
+2026-04-05 22:21:00,129 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:00,529 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:14,193 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:14,365 [INFO] app.graph.nodes.juiz — [NODE] Juiz avaliando consistência...
+2026-04-05 22:21:14,635 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:19,501 [INFO] app.graph.nodes.juiz — [JUIZ] Veredito final: replanejar
+2026-04-05 22:21:19,899 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:19,900 [INFO] app.graph.nodes.planner — [NODE] Planner criando estratégia...
+2026-04-05 22:21:20,306 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:20,324 [INFO] app.graph.nodes.planner — [PLANNER] Plano salvo em: /home/alvarocruz/Documentos/Projeto_Completo/backend/workspace/bb9250b4-832e-48db-a747-8fca653a9adc/plano_execucao.md
+2026-04-05 22:21:20,389 [INFO] app.graph.nodes.scanner — [NODE] Data Scanner explorando whitelist (com cache): ['sales_transactions', 'products', 'financials', 'logistics_shipments', 'customers']
+2026-04-05 22:21:20,419 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: sales_transactions
+2026-04-05 22:21:20,434 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: products
+2026-04-05 22:21:20,435 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: financials
+2026-04-05 22:21:20,437 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: logistics_shipments
+2026-04-05 22:21:20,437 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: customers
+2026-04-05 22:21:20,763 [INFO] watchfiles.main — 2 changes detected
+2026-04-05 22:21:20,806 [INFO] app.graph.nodes.semantic_layer — [NODE] Semantic Layer detectando categorias (paralelo + cache)...
+2026-04-05 22:21:21,186 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:21,521 [INFO] app.graph.nodes.semantic_layer — [SemanticLayer] 19 mapeamentos concluídos (19 colunas processadas em paralelo).
+2026-04-05 22:21:22,736 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:22,795 [INFO] app.graph.nodes.router — [NODE] Router direcionando tráfego...
+2026-04-05 22:21:23,141 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:23,506 [INFO] app.engine — [ENGINE] Fan-out para agentes: ['agente_vendas']
+2026-04-05 22:21:23,827 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:24,210 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:24,355 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:21:26,526 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:21:26,537 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:21:26,544 [INFO] databricks.sql.session — Successfully opened session 01f13156-ee7b-1635-8b74-efd77e6ba06c
+2026-04-05 22:21:27,213 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:21:27,259 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:21:28,813 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:21:28,829 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:21:29,029 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT 
+    st.product_id,
+    p.product_name,
+    SUM(st.total_amount) AS total_sales,
+    COUNT(st...
+2026-04-05 22:21:29,854 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:21:29,937 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:21:33,635 [INFO] watchfiles.main — 2 changes detected
+2026-04-05 22:21:34,049 [INFO] watchfiles.main — 3 changes detected
+2026-04-05 22:21:34,457 [INFO] watchfiles.main — 3 changes detected
+2026-04-05 22:21:35,125 [INFO] watchfiles.main — 3 changes detected
+2026-04-05 22:21:35,188 [INFO] app.graph.nodes.consolidador — [NODE] Consolidador unificando inteligência...
+2026-04-05 22:21:35,514 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:35,974 [INFO] app.graph.nodes.gepa — [NODE] GEPA revisando qualidade final...
+2026-04-05 22:21:36,135 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:36,521 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:36,947 [INFO] app.graph.nodes.juiz — [NODE] Juiz avaliando consistência...
+2026-04-05 22:21:37,034 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:37,312 [INFO] app.graph.nodes.juiz — [JUIZ] Veredito final: replanejar
+2026-04-05 22:21:37,425 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:37,486 [INFO] app.graph.nodes.planner — [NODE] Planner criando estratégia...
+2026-04-05 22:21:37,839 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:39,505 [INFO] app.graph.nodes.planner — [PLANNER] Plano salvo em: /home/alvarocruz/Documentos/Projeto_Completo/backend/workspace/bb9250b4-832e-48db-a747-8fca653a9adc/plano_execucao.md
+2026-04-05 22:21:39,590 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:39,993 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:39,731 [INFO] app.graph.nodes.scanner — [NODE] Data Scanner explorando whitelist (com cache): ['sales_transactions', 'products', 'financials', 'logistics_shipments', 'customers']
+2026-04-05 22:21:40,032 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: sales_transactions
+2026-04-05 22:21:40,127 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: products
+2026-04-05 22:21:40,197 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: financials
+2026-04-05 22:21:40,326 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: logistics_shipments
+2026-04-05 22:21:40,391 [INFO] app.graph.nodes.scanner — [Scanner] Cache HIT: customers
+2026-04-05 22:21:40,388 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:40,491 [INFO] app.graph.nodes.semantic_layer — [NODE] Semantic Layer detectando categorias (paralelo + cache)...
+2026-04-05 22:21:40,811 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:40,880 [INFO] app.graph.nodes.semantic_layer — [SemanticLayer] 19 mapeamentos concluídos (19 colunas processadas em paralelo).
+2026-04-05 22:21:41,207 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:41,285 [INFO] app.graph.nodes.router — [NODE] Router direcionando tráfego...
+2026-04-05 22:21:41,610 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:41,860 [INFO] app.engine — [ENGINE] Fan-out para agentes: ['agente_vendas']
+2026-04-05 22:21:42,407 [INFO] watchfiles.main — 1 change detected
+2026-04-05 22:21:42,875 [INFO] utils.db_connector — [Pool] Pool vazio — abrindo nova conexão Databricks.
+2026-04-05 22:21:45,993 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:21:46,020 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:21:46,064 [INFO] databricks.sql.session — Successfully opened session 01f13156-fa02-15f0-b156-a02bb2db9a30
+2026-04-05 22:21:46,933 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:21:47,230 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:21:57,041 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:21:57,210 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:22:00,797 [INFO] utils.db_connector — [Databricks] Executando em estudo_multi_agente.bronze: SELECT 
+    st.product_id,
+    p.product_name,
+    SUM(st.total_amount) AS total_sales,
+    COUNT(st...
+2026-04-05 22:22:01,677 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:22:01,685 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:22:02,373 [INFO] watchfiles.main — 5 changes detected
+2026-04-05 22:22:02,409 [INFO] databricks.sql.session — Closing session 01f13156-fa02-15f0-b156-a02bb2db9a30
+2026-04-05 22:22:03,373 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+2026-04-05 22:22:03,373 [INFO] databricks.sql.auth.thrift_http_client — HTTP Response with status code 200, message: OK
+2026-04-05 22:22:03,512 [INFO] watchfiles.main — 3 changes detected
+2026-04-05 22:22:03,600 [INFO] app.graph.nodes.consolidador — [NODE] Consolidador unificando inteligência...
+2026-04-05 22:22:03,663 [INFO] app.graph.nodes.gepa — [NODE] GEPA revisando qualidade final...
+2026-04-05 22:22:03,670 [INFO] app.graph.nodes.juiz — [NODE] Juiz avaliando consistência...
+2026-04-05 22:22:03,677 [INFO] app.graph.nodes.juiz — [JUIZ] Veredito final: replanejar
+2026-04-05 22:22:03,678 [WARNING] app.engine — [ENGINE] Limite de replanejamento atingido. Forçando finalização.
+2026-04-05 22:22:03,680 [INFO] app.graph.nodes.memorizador — [NODE] Memorizador salvando insights LTM...
+2026-04-05 22:22:03,877 [INFO] watchfiles.main — 4 changes detected
+2026-04-05 22:22:08,474 [INFO] app.core.persona_store — [LTM] Preferência aprendida para user 'Carlos': O usuário está interessado na comparação entre vendas e metas de produtos eletrônicos na região Sudeste.
+2026-04-05 22:22:08,474 [INFO] app.graph.nodes.memorizador — [LTM] Novo insight memorizado: O usuário está interessado na comparação entre vendas e metas de produtos eletrônicos na região Sudeste.
+2026-04-05 22:22:08,563 [INFO] watchfiles.main — 4 changes detected
+2026-04-05 22:22:35,444 [INFO] databricks.sql.auth.retry — Received status code 200 for POST request
+
+[0;31mEncerrando tudo...[0m
+./run_project.sh, linha 69: 56814 Desconexão             python main.py  (wd: ~/Documentos/Projeto_Completo/backend)
+./run_project.sh, linha 69: 56904 Desconexão             npm start -- --open  (wd: ~/Documentos/Projeto_Completo/frontend)
+[0;32mLiberando portas...[0m
+Porta 8000 livre ✅
+Porta 4000 livre ✅
+Porta 4200 livre ✅
+[0;32mCleanup concluído ✅[0m

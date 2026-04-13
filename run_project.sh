@@ -3,7 +3,7 @@
 # ==============================
 # CONFIG
 # ==============================
-PORTS=(8000 4000 4200)
+PORTS=(8000 4000 4200 5001)
 LOCK_FILE="/tmp/agente_hitl.lock"
 
 # ==============================
@@ -75,10 +75,15 @@ cleanup() {
         kill $BACKEND_PID 2>/dev/null
     fi
 
-    # Mata frontend
     if [ ! -z "$FRONTEND_PID" ]; then
         pkill -P $FRONTEND_PID 2>/dev/null
         kill $FRONTEND_PID 2>/dev/null
+    fi
+
+    # Mata MLflow UI
+    if [ ! -z "$MLFLOW_PID" ]; then
+        pkill -P $MLFLOW_PID 2>/dev/null
+        kill $MLFLOW_PID 2>/dev/null
     fi
 
     # Libera portas
@@ -125,8 +130,9 @@ cd ..
 
 # Healthcheck backend (retry loop para imports lentos como pandas/mlflow)
 echo "Aguardando backend subir na porta 4000..."
-MAX_RETRIES=30
+MAX_RETRIES=120
 COUNT=0
+
 BACKEND_UP=false
 
 while [ $COUNT -lt $MAX_RETRIES ]; do
@@ -163,6 +169,20 @@ FRONTEND_PID=$!
 cd ..
 
 # ==============================
+# 📊 MLFLOW UI (Tracking)
+# ==============================
+echo -e "${GREEN}Subindo Painel MLflow...${NC}"
+cd backend
+.venv/bin/mlflow ui --backend-store-uri sqlite:///mlruns.db --port 5001 &
+MLFLOW_PID=$!
+cd ..
+
+# Aguarda 2 segundinhos pro MLflow UI bootar a porta e abre
+sleep 2
+python3 -m webbrowser "http://localhost:5001"
+
+
+# ==============================
 # 🔎 MONITORAMENTO CONTÍNUO
 # ==============================
 echo -e "${BLUE}Sistema em execução 🚀${NC}"
@@ -179,6 +199,12 @@ while true; do
     # Se frontend morreu → encerra tudo
     if ! ps -p $FRONTEND_PID > /dev/null 2>&1; then
         echo -e "${RED}Frontend caiu. Encerrando stack.${NC}"
+        cleanup
+    fi
+
+    # Se mlflow caiu
+    if ! ps -p $MLFLOW_PID > /dev/null 2>&1; then
+        echo -e "${RED}MLflow caiu. Encerrando stack.${NC}"
         cleanup
     fi
 done

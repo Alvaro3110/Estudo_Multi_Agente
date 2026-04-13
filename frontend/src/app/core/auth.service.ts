@@ -8,11 +8,13 @@ export interface LoginCredentials {
   senha: string;
 }
 
+export type UserPerfil = 'plataforma' | 'administrator' | 'Gestor' | 'Analista' | 'Gestor de Carteira' | string;
+
 export interface AuthUser {
   id: string;
   nome: string;
   matricula: string;
-  perfil: string;       // ex: "Gestor de Carteira"
+  perfil: UserPerfil;   // ex: 'plataforma', 'administrator', 'Gestor'
   token: string;
   grupos: string[];
 }
@@ -80,13 +82,19 @@ export class AuthService {
 
   /**
    * Restaura a sessão do usuário ao recarregar a página.
-   * Chamado no AppComponent.
+   * Se a sessão for de um mock (token começa com 'mock-jwt-token-'),
+   * atualiza o perfil para o perfil correto atual ('plataforma').
    */
   restoreSession(): void {
     const stored = localStorage.getItem('auth_user');
     if (stored) {
       try {
         const user = JSON.parse(stored);
+        // Migra sessões mock antigas para o perfil atualizado
+        if (user.token?.startsWith('mock-jwt-token-') && user.perfil !== 'plataforma') {
+          user.perfil = 'plataforma';
+          localStorage.setItem('auth_user', JSON.stringify(user));
+        }
         this.currentUser$.next(user);
       } catch (e) {
         this.logout();
@@ -94,12 +102,30 @@ export class AuthService {
     }
   }
 
+  /**
+   * Verifica se o usuário atual tem acesso ao Monitor de Agentes
+   * (apenas perfis 'plataforma' e 'administrator').
+   */
+  hasMonitorAccess(): boolean {
+    const user = this.currentUser$.getValue();
+    if (!user) return false;
+    const p = user.perfil?.toLowerCase();
+    return p === 'plataforma' || p === 'administrator';
+  }
+
+  /**
+   * Retorna o snapshot síncrono do usuário atual.
+   */
+  getCurrentUserSnapshot(): AuthUser | null {
+    return this.currentUser$.getValue();
+  }
+
   private getMockUser(matricula: string): AuthUser {
     return {
       id: '001',
       nome: 'Carlos Silva',
       matricula,
-      perfil: 'Gestor de Carteira',
+      perfil: 'plataforma',  // perfil especial com acesso ao Monitor
       token: 'mock-jwt-token-' + Date.now(),
       grupos: ['varejo-sp', 'credito-imob', 'agro-premium']
     };

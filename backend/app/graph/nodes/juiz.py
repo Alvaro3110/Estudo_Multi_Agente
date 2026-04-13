@@ -20,26 +20,30 @@ class AvaliarResultado(dspy.Signature):
 def node_juiz(state: GraphState) -> dict:
     """
     Nó Juiz: Ponto Crítico de Controle.
-    Evita alucinações e garante que a query foi realmente respondida.
+    Validação heurística sem uso de tokens de LLM (Token Saving).
     """
-    logger.info("[NODE] Juiz avaliando consistência...")
+    logger.info("[NODE] Juiz avaliando consistência (SEM LLM)...")
     
-    llm = configurar_modelo(state.get("modelo_selecionado", "GPT-4o Mini"))
+    veredito = "finalizar"
     
-    try:
-        with dspy.context(lm=llm):
-            predictor = dspy.Predict(AvaliarResultado)
-            res = predictor(
-                query=state["query"],
-                relatorio_final=state["consolidacao_final"],
-                schema_context=str(state.get("schema_info", {}))
-            )
-            veredito = res.veredito.strip().lower()
-            if "replanejar" in veredito: veredito = "replanejar"
-            else: veredito = "finalizar"
-    except Exception as e:
-        logger.error(f"[JUIZ] Falha técnica na avaliação: {e}")
-        veredito = "finalizar" # Fallback conservador
+    # Heurística 1: Há erro de SQL nas extrações Databricks?
+    dados_db = state.get("dados_databricks", {})
+    tem_erro_sql = False
+    
+    for agent_id, dados in dados_db.items():
+        if isinstance(dados, list) and len(dados) > 0:
+            if "erro_sql" in str(dados[0]):
+                tem_erro_sql = True
+                break
+                
+    if tem_erro_sql:
+        logger.warning("[JUIZ] Heurística ativada: Erro de sintaxe SQL detectado. Replanejando.")
+        veredito = "replanejar"
+
+    # Heurística 2: Orquestração perdeu controle dos agentes?
+    if not state.get("agentes_selecionados"):
+        logger.warning("[JUIZ] Heurística ativada: Nenhum agente atribuído. Replanejando.")
+        veredito = "replanejar"
 
     logger.info(f"[JUIZ] Veredito final: {veredito}")
     return {

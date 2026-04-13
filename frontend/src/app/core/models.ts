@@ -47,6 +47,31 @@ export interface DeptReportConfig {
   summaryAfterReport: string;      // texto conclusivo pós-relatório
 }
 
+export interface HistoricoMessage {
+  id: string;
+  role: 'user' | 'agent' | 'conclusion';
+  agentName?: string;
+  agentColor?: string;
+  agentIconType?: string;
+  content: string;           // suporta markdown via MarkdownPipe
+  timestamp: string;
+  rowCount?: number;
+  status?: 'done' | 'running' | 'error';
+}
+
+export interface HistoricoItem {
+  id: string;
+  departmentId: string;
+  departmentName: string;
+  departmentColorVariant: string;  // ex: 'fin', 'bac', 'inv', 'cad', 'emp'
+  query: string;                   // pergunta original do usuário
+  agentCount: number;
+  rowCount: number;
+  createdAt: string;               // ISO string
+  messages: HistoricoMessage[];
+  canContinue: boolean;   // true se análise pode ser continuada
+}
+
 export interface DeptKpi {
   id: string;
   name: string;
@@ -80,28 +105,6 @@ export interface ExecKpi {
   accent?: boolean;
 }
 
-// ---- Histórico ----
-export interface HistoricoItem {
-  id: string;
-  departmentId: string;
-  departmentName: string;
-  departmentColor: string;
-  query: string;
-  agentCount: number;
-  rowCount: number;
-  createdAt: string;        // ISO string
-  messages: HistoricoMessage[];
-}
-
-export interface HistoricoMessage {
-  role: 'user' | 'agent';
-  agentName?: string;
-  content: string;
-  timestamp: string;
-  rowCount?: number;
-  status?: 'done' | 'running' | 'error';
-}
-
 // ---- Configurações ----
 export interface AppUser {
   id: string;
@@ -110,6 +113,18 @@ export interface AppUser {
   perfil: 'Admin' | 'Gestor' | 'Analista';
   grupos: string[];
   lastAccess: string;
+}
+
+export interface UserGroup {
+  id: string;
+  name: string;
+  iconType: string;
+  colorVariant: 'red'|'blue'|'green'|'amber'|'purple'|'teal'|'indigo'|'pink';
+  departmentCount: number;
+  alertCount: number;          // 0 = sem badge, >0 = badge vermelho ou âmbar
+  alertSeverity: 'critical'|'warning'|'none';
+  locked: boolean;             // true = sem permissão de acesso
+  active: boolean;             // true = grupo selecionado atualmente
 }
 
 export interface AgentConfig {

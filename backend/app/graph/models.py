@@ -18,6 +18,7 @@ class GerarRelatorioDominio(dspy.Signature):
     """
     query_usuario = dspy.InputField(desc="A pergunta original.")
     json_extraido_do_banco = dspy.InputField(desc="Dados JSON brutos.")
+    instrucoes_de_skill = dspy.InputField(desc="Instrucões de conduta textuais (Skill) definidas para este agente.", default="")
     relatorio = dspy.OutputField(desc="""
         Relatório executivo estruturado em Markdown. 
         REGRAS: 

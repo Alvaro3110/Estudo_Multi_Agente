@@ -1,34 +1,31 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { UserGroupsService, UserGroup } from '../../../core/user-groups.service';
+import { RouterModule, Router } from '@angular/router';
+import { UserGroupsService } from '../../../core/user-groups.service';
 import { AuthService } from '../../../core/auth.service';
+import { DeptIconComponent } from '../dept-icon/dept-icon.component';
+import { UserGroup } from '../../../core/models';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, DeptIconComponent],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
   private userGroupsService = inject(UserGroupsService);
   private authService = inject(AuthService);
+  private router = inject(Router);
 
-  // Estado do sidebar salvo no localStorage para persistir entre sessões
   isExpanded = true;
   
   groups$ = this.userGroupsService.getGroups();
-  activeGroupId$ = this.userGroupsService.getActiveGroupId();
   user$ = this.authService.getCurrentUser();
-  isLoadingGroups$ = this.userGroupsService.isLoading();
 
   ngOnInit() {
-    // Restaurar estado do sidebar
     const saved = localStorage.getItem('sidebar_expanded');
     this.isExpanded = saved !== null ? saved === 'true' : true;
-
-    // Carregar grupos
     this.userGroupsService.loadGroups();
   }
 
@@ -37,18 +34,14 @@ export class SidebarComponent implements OnInit {
     localStorage.setItem('sidebar_expanded', String(this.isExpanded));
   }
 
-  onGroupClick(group: UserGroup) {
-    if (!group.locked) {
-      this.userGroupsService.setActiveGroup(group.id);
-    }
+  onGroupClick(group: UserGroup): void {
+    if (group.locked) return;
+    this.userGroupsService.setActiveGroup(group.id);
+    this.router.navigate(['/']);
   }
 
   logout() {
     this.authService.logout();
-    window.location.reload(); // Simples recarregamento para limpar estados
-  }
-
-  getGroupIconClass(color: string): string {
-    return 'gi-' + color;
+    window.location.reload();
   }
 }

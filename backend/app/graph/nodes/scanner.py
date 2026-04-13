@@ -18,11 +18,29 @@ def node_data_scanner(state: GraphState) -> dict:
     Nó Data Scanner: Busca o schema real no Databricks Information Schema.
     Cache de 30min — evita DESCRIBE TABLE a cada execução.
     """
-    logger.info(f"[NODE] Data Scanner explorando whitelist (com cache): {TABELAS_WHITELIST}")
-    
     schema_info = {}
     
-    for tabela in TABELAS_WHITELIST:
+    # Heurística Token Saving: Limitar scan de schema baseado nos agentes recomendados
+    agentes_str = str(state.get("agentes_recomendados", "")).lower()
+    tabelas_foco = []
+    
+    if "vendas" in agentes_str:
+        tabelas_foco.extend(["sales_transactions", "products"])
+    if "financeiro" in agentes_str:
+        tabelas_foco.extend(["financials"])
+    if "logistica" in agentes_str:
+        tabelas_foco.extend(["logistics_shipments"])
+        
+    # Fallback seguro < 5
+    if not tabelas_foco:
+        tabelas_foco = ["sales_transactions", "products", "customers"]
+        
+    # Garantia final (hard cap)
+    tabelas_foco = list(set(tabelas_foco))[:4]
+    
+    logger.info(f"[NODE] Data Scanner explorando whitelist reduzida (max 4): {tabelas_foco}")
+    
+    for tabela in tabelas_foco:
         cache_key = f"schema:{tabela}"
         cached = schema_cache.get(cache_key)
 

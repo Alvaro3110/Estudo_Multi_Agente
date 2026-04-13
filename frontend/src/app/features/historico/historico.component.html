@@ -1,84 +1,170 @@
-<div class="historico-container">
-  <!-- Painel Esquerdo: Lista -->
-  <aside class="historico-list-pane">
-    <div class="search-box">
-      <input 
-        type="text" 
-        placeholder="Buscar análises..." 
-        [(ngModel)]="searchTerm"
-        (input)="onSearch()"
-      >
+<div class="hist-layout">
+  <!-- Painel esquerdo: lista de análises -->
+  <aside class="hist-list">
+    <div class="hl-header">
+      <div class="hl-title">Histórico</div>
+      <button class="hl-new-btn" (click)="goToChat()">
+        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        Nova consulta
+      </button>
     </div>
-
-    <div class="list-scroll">
-      <div *ngFor="let item of items" 
-           class="historico-item-card" 
-           [class.active]="item.id === selectedItem?.id"
+    <div class="hl-search">
+      <input type="text" [(ngModel)]="searchQuery" (ngModelChange)="onSearchChange()" placeholder="Buscar por tema ou setor...">
+    </div>
+    <div class="hl-items">
+      <div class="hl-item"
+           *ngFor="let item of filteredItems$ | async"
+           [class.active]="selectedItem?.id === item.id"
            (click)="selectItem(item)">
-        <div class="card-top">
-          <span class="dept-badge" [ngClass]="getBadgeClass(item.departmentName)">{{ item.departmentName }}</span>
-          <span class="date-text">{{ item.createdAt | dateRelative }}</span>
+        <div class="hi-top">
+          <span class="hi-badge" [ngClass]="'hi-badge-' + item.departmentColorVariant">
+            {{ item.departmentName }}
+          </span>
+          <span class="hi-date">{{ item.createdAt | dateRelative }}</span>
         </div>
-        <div class="card-query">{{ item.query }}</div>
-        <div class="card-footer">
-          {{ item.agentCount }} agentes · {{ item.rowCount }} registros
+        <div class="hi-query">{{ item.query }}</div>
+        <div class="hi-meta">
+          <span>{{ item.agentCount }} agentes</span>
+          <div class="hi-dot"></div>
+          <span>{{ item.rowCount | number }} registros</span>
+          <ng-container *ngIf="item.canContinue">
+            <div class="hi-dot"></div>
+            <span class="hi-continue-hint">continuar →</span>
+          </ng-container>
         </div>
       </div>
-
-      <div *ngIf="items.length === 0" class="empty-list">
-        Nenhuma análise encontrada
+      <div *ngIf="(filteredItems$ | async)?.length === 0" class="empty-list-hint">
+        Nenhuma análise encontrada.
       </div>
     </div>
   </aside>
 
-  <!-- Painel Direito: Detalhe -->
-  <main class="historico-detail-pane">
+  <!-- Painel direito: área de chat/detalhe -->
+  <main class="chat-area">
     <div *ngIf="!selectedItem" class="empty-state">
-      <div class="empty-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#CCC" stroke-width="2">
-          <path d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>
-        </svg>
-      </div>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
       <p>Selecione uma análise para visualizar</p>
+      <button (click)="goToChat()">+ Nova consulta</button>
     </div>
 
     <ng-container *ngIf="selectedItem">
-      <header class="detail-header">
-        <div class="header-left">
-          <h1>{{ selectedItem.query }}</h1>
-          <div class="pills-row">
-            <span class="dept-badge" [ngClass]="getBadgeClass(selectedItem.departmentName)">{{ selectedItem.departmentName }}</span>
-            <span class="pill-blue">{{ selectedItem.agentCount }} agentes</span>
-            <span class="pill-green">{{ selectedItem.rowCount }} registros</span>
-            <span class="pill-gray">{{ selectedItem.createdAt | dateRelative }}</span>
+      <!-- SUBHEADER -->
+      <div class="ca-top">
+        <div class="ca-top-left">
+          <div class="ca-title">{{ selectedItem.query }}</div>
+          <div class="ca-pills">
+            <span class="ca-pill" [ngClass]="'cp-' + selectedItem.departmentColorVariant">
+              {{ selectedItem.departmentName }}
+            </span>
+            <span class="ca-pill cp-blue">{{ selectedItem.agentCount }} agentes</span>
+            <span class="ca-pill cp-green">{{ selectedItem.rowCount | number }} registros</span>
+            <span class="ca-pill cp-gray">{{ selectedItem.createdAt | dateRelative }}</span>
           </div>
         </div>
-        <div class="header-right">
-          <button class="outline-btn" (click)="exportPdf()">Exportar PDF</button>
-          <button class="primary-btn" (click)="reexecute(selectedItem)">Reexecutar</button>
-        </div>
-      </header>
-
-      <div class="messages-area">
-        <div *ngFor="let msg of selectedItem.messages" 
-             class="message-bubble" 
-             [class.user-msg]="msg.role === 'user'" 
-             [class.agent-msg]="msg.role === 'agent'">
-          
-          <div *ngIf="msg.role === 'agent'" class="agent-name">{{ msg.agentName }}</div>
-          <div class="msg-content">{{ msg.content }}</div>
-          
-          <div class="msg-meta">
-            <span *ngIf="msg.rowCount" class="tag-rowcount">{{ msg.rowCount }} registros analisados</span>
-            <span *ngIf="msg.status === 'done'" class="tag-done">concluído</span>
-            <span class="msg-time">{{ msg.timestamp }}</span>
-          </div>
-        </div>
-
-        <div *ngIf="selectedItem.messages.length === 0" class="no-messages">
-          Mensagens desta análise não estão disponíveis
+        <div class="ca-actions">
+          <button class="ca-btn-outline" (click)="exportar()">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Exportar
+          </button>
+          <button class="ca-btn-solid" (click)="reexecutar()">
+            <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+            Reexecutar
+          </button>
         </div>
       </div>
+
+      <!-- BANNER DE CONTINUAÇÃO -->
+      <div class="cont-banner" *ngIf="showContinueBanner">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <div class="cont-text">
+          Continuando análise do <b>Departamento {{ selectedItem.departmentName }}</b>.
+          Você pode fazer novas perguntas sobre esta análise ou iniciar uma nova consulta.
+        </div>
+        <span class="cont-dismiss" (click)="showContinueBanner = false">✕</span>
+      </div>
+
+      <!-- ÁREA DE MENSAGENS -->
+      <div class="msg-area" #msgArea>
+        <!-- Mensagens históricas -->
+        <ng-container *ngFor="let msg of selectedItem.messages">
+          <div class="msg-user" *ngIf="msg.role === 'user'">
+            <div class="msg-user-b">{{ msg.content }}</div>
+          </div>
+          <div class="msg-agent" *ngIf="msg.role === 'agent'">
+            <div class="ag-ava" [style.background]="msg.agentColor">
+              <app-dept-icon [type]="msg.agentIconType || 'cpu'"></app-dept-icon>
+            </div>
+            <div class="ag-col">
+              <div class="ag-name" [style.color]="msg.agentColor">{{ msg.agentName }}</div>
+              <div class="ag-bubble">
+                <div [innerHTML]="msg.content"></div>
+                <span class="ag-tag" *ngIf="msg.rowCount">{{ msg.rowCount | number }} registros</span>
+              </div>
+            </div>
+          </div>
+          <div class="msg-conclusion" *ngIf="msg.role === 'conclusion'">
+            <div class="conclusion-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#EC0000" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            </div>
+            <div [innerHTML]="msg.content"></div>
+          </div>
+        </ng-container>
+
+        <!-- Separador visual quando há continuação -->
+        <div class="new-msg-banner" *ngIf="continuationMessages.length > 0">
+          <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+          Continuando a análise...
+        </div>
+
+        <!-- Mensagens de continuação -->
+        <ng-container *ngFor="let msg of continuationMessages">
+          <div class="msg-user" *ngIf="msg.role === 'user'">
+            <div class="msg-user-b">{{ msg.content }}</div>
+          </div>
+          <div class="msg-agent" *ngIf="msg.role === 'agent'">
+            <div class="ag-ava" [style.background]="msg.agentColor">
+              <app-dept-icon [type]="msg.agentIconType || 'cpu'"></app-dept-icon>
+            </div>
+            <div class="ag-col">
+              <div class="ag-name" [style.color]="msg.agentColor">{{ msg.agentName }}</div>
+              <div class="ag-bubble">
+                <div [innerHTML]="msg.content"></div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Indicador de digitação -->
+        <div class="typing-indicator" *ngIf="isTyping">
+          <div class="ag-ava" style="background:#EC0000">
+            <app-dept-icon type="cpu"></app-dept-icon>
+          </div>
+          <div class="typing-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INPUT DE CONTINUAÇÃO -->
+      <div class="chat-input-area" *ngIf="selectedItem.canContinue">
+        <div class="ci-ctx">
+           <app-dept-icon type="cpu" style="width:10px;height:10px;"></app-dept-icon>
+           Perguntar sobre esta análise · {{ selectedItem.departmentName }} · {{ activeGroup?.name }}
+        </div>
+        <div class="ci-row">
+          <textarea class="ci-input" [(ngModel)]="inputText" (keydown.enter)="$event.preventDefault(); sendContinuation()" placeholder="Faça uma pergunta sobre esta análise..." rows="1"></textarea>
+          <button class="ci-send" [disabled]="!inputText.trim() || isTyping" (click)="sendContinuation()">
+            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Se não pode continuar -->
+      <div class="no-continue-bar" *ngIf="!selectedItem.canContinue">
+        <span>Esta análise não pode ser continuada.</span>
+        <button (click)="reexecutar()">Reexecutar do zero →</button>
+      </div>
+
     </ng-container>
   </main>
 </div>

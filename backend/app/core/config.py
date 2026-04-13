@@ -25,6 +25,10 @@ class Settings(BaseSettings):
     LANGCHAIN_API_KEY: str = ""
     LANGCHAIN_PROJECT: str = "chat-multiagente"
 
+    # MLflow
+    MLFLOW_TRACKING_URI: str = "databricks"
+    MLFLOW_EXPERIMENT_NAME: str = "/Users/alvarosouzacruz@gmail.com/multi_agente_projeto"
+
     class Config:
         env_file = ".env"
         extra = "ignore"

@@ -41,11 +41,12 @@ async def login(credentials: LoginCredentials):
     logger.info(f"[AUTH/LOGIN] Login bem-sucedido para: {credentials.matricula}")
 
     # Mock de usuário baseado na matrícula
+    # Perfil 'plataforma' = acesso completo incluindo Monitor de Agentes
     return AuthUser(
         id="001",
-        nome="Carlos Silva (Prod)",
+        nome="Carlos Silva",
         matricula=credentials.matricula,
-        perfil="Gestor de Carteira",
+        perfil="plataforma",
         token=f"jwt-mock-{int(time.time())}",
         grupos=["varejo-sp", "credito-imob", "agro-premium"]
     )

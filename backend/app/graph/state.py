@@ -25,6 +25,8 @@ class GraphState(TypedDict):
     modelo_selecionado: str
     department_id: str
     group_context: str
+    user_id: str  # ID do usuário logado (ex: 'Carlos')
+    user_preferences: str  # Contexto de Long-Term Memory (ex: 'Gosta de respostas curtas')
     
     # Processamento
     active_node: Annotated[str, merge_active_nodes]

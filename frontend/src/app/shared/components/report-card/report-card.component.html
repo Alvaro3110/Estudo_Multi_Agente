@@ -1,0 +1,113 @@
+<!-- Arquivo: report-card.component.html -->
+<!-- Renderiza um relatório estruturado com seções tipadas ou fallback markdown -->
+
+<div class="report-card" *ngIf="step">
+
+  <!-- ─── HEADER ─────────────────────────────────────────────────────────── -->
+  <div class="rc-header">
+    <div class="rc-header-left">
+      <div class="rc-avatar" [style.background]="agentColorResolved">
+        <!-- Ícone genérico de agente -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/>
+        </svg>
+      </div>
+      <div class="rc-header-text">
+        <div class="rc-agent-name" [style.color]="agentColorResolved">
+          {{ report?.title || agentNameResolved }}
+          <span class="rc-timestamp" *ngIf="timestamp">{{ timestamp }}</span>
+        </div>
+        <div class="rc-subtitle" *ngIf="report?.generated_at">
+          Gerado às {{ report!.generated_at }}
+        </div>
+      </div>
+    </div>
+    <div
+      class="rc-badge"
+      [class.badge-ok]="report?.badge_variant === 'ok' || !report"
+      [class.badge-warn]="report?.badge_variant === 'warn'"
+      [class.badge-error]="report?.badge_variant === 'error'">
+      {{ report?.badge_text || 'concluído' }}
+    </div>
+  </div>
+
+  <!-- ─── RELATÓRIO ESTRUTURADO ─────────────────────────────────────────── -->
+  <ng-container *ngIf="hasStructuredReport">
+    <ng-container *ngFor="let section of report!.sections">
+
+      <!-- NARRATIVE — texto com markdown renderizado -->
+      <div class="rc-section" *ngIf="section.type === 'narrative'">
+        <div class="rc-sec-label" *ngIf="section.label">{{ section.label }}</div>
+        <div class="rc-narrative" [innerHTML]="(section.content || '') | markdown"></div>
+      </div>
+
+      <!-- TABLE — tabela estruturada com dados reais -->
+      <div class="rc-section" *ngIf="section.type === 'table' && section.table">
+        <div class="rc-sec-label" *ngIf="section.label">{{ section.label }}</div>
+        <app-report-table [table]="section.table"></app-report-table>
+      </div>
+
+      <!-- ACTION LIST — lista de ações numeradas -->
+      <div class="rc-section" *ngIf="section.type === 'action_list' && section.items?.length">
+        <div class="rc-sec-label" *ngIf="section.label">{{ section.label }}</div>
+        <div class="action-list">
+          <div class="action-item" *ngFor="let item of section.items; let i = index">
+            <div class="action-num">{{ i + 1 }}</div>
+            <div class="action-body">
+              <div class="action-title">{{ item.title }}</div>
+              <div class="action-desc" *ngIf="item.description">{{ item.description }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONCLUSION — box com borda esquerda vermelha -->
+      <div class="rc-section" *ngIf="section.type === 'conclusion'">
+        <div class="rc-sec-label" *ngIf="section.label">{{ section.label }}</div>
+        <div class="conclusion-box" [innerHTML]="(section.content || '') | markdown"></div>
+      </div>
+
+    </ng-container>
+  </ng-container>
+
+  <!-- ─── FALLBACK: markdown puro (sem relatório estruturado) ──────────── -->
+  <div class="rc-section" *ngIf="!hasStructuredReport">
+    <div class="rc-narrative" [innerHTML]="step.content | markdown"></div>
+  </div>
+
+  <!-- ─── FOOTER: score de confiança + registros + aviso ──────────────── -->
+  <div
+    class="rc-footer"
+    *ngIf="report && (report.score_confianca || report.row_count || report.source_warning)">
+
+    <!-- Barra de score de confiança -->
+    <ng-container *ngIf="report.score_confianca">
+      <span class="rc-score-label">confiança</span>
+      <div class="rc-score-track">
+        <div
+          class="rc-score-fill"
+          [style.width.%]="report.score_confianca! * 100"
+          [style.background]="getScoreColor(report.score_confianca!)">
+        </div>
+      </div>
+      <span class="rc-score-val" [style.color]="getScoreColor(report.score_confianca!)">
+        {{ (report.score_confianca! * 100) | number:'1.0-0' }}%
+      </span>
+      <div class="rc-divv"></div>
+    </ng-container>
+
+    <!-- Total de registros analisados -->
+    <span class="rc-rows" *ngIf="report.row_count">
+      {{ report.row_count | number }} registros analisados
+    </span>
+
+    <!-- Aviso de dados parciais -->
+    <ng-container *ngIf="report.source_warning">
+      <div class="rc-divv"></div>
+      <span class="rc-rows rc-warning">{{ report.source_warning }}</span>
+    </ng-container>
+
+  </div>
+
+</div>

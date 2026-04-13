@@ -1,0 +1,452 @@
+[
+    {
+        "region": "RJ",
+        "product_name": "Produto_P651",
+        "total_quantity_sold": 15646,
+        "total_sales": 4120001.5981448973,
+        "total_profit": 77569.90653991261,
+        "total_cost": 129022.340593442,
+        "profit_margin": 0.9686839100617008
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P709",
+        "total_quantity_sold": 15673,
+        "total_sales": 4105685.6693764576,
+        "total_profit": 377488.18389805075,
+        "total_cost": 823599.4458045982,
+        "profit_margin": 0.7994002677926192
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P612",
+        "total_quantity_sold": 15541,
+        "total_sales": 4080758.057314788,
+        "total_profit": 1106484.8687676042,
+        "total_cost": 1395630.6610756356,
+        "profit_margin": 0.6579972050599868
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P682",
+        "total_quantity_sold": 15585,
+        "total_sales": 4079674.3467649436,
+        "total_profit": 522177.2461780666,
+        "total_cost": 1430609.40719459,
+        "profit_margin": 0.6493324501920062
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P825",
+        "total_quantity_sold": 15548,
+        "total_sales": 4071147.616501604,
+        "total_profit": 710155.5802719566,
+        "total_cost": 1347981.9953795094,
+        "profit_margin": 0.6688938544218522
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P477",
+        "total_quantity_sold": 15527,
+        "total_sales": 4070856.9444910074,
+        "total_profit": 286673.9771981625,
+        "total_cost": 487685.4159977265,
+        "profit_margin": 0.8802007973633907
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P862",
+        "total_quantity_sold": 15511,
+        "total_sales": 4050770.1326944167,
+        "total_profit": 74527.36679994296,
+        "total_cost": 128252.00780736684,
+        "profit_margin": 0.9683388581415113
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P961",
+        "total_quantity_sold": 15273,
+        "total_sales": 4049465.686990815,
+        "total_profit": 563153.3734180725,
+        "total_cost": 1313398.6762692467,
+        "profit_margin": 0.6756612408178616
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P713",
+        "total_quantity_sold": 15445,
+        "total_sales": 4047596.433104435,
+        "total_profit": 126407.6420698113,
+        "total_cost": 191697.13166305464,
+        "profit_margin": 0.9526392675674866
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P136",
+        "total_quantity_sold": 15502,
+        "total_sales": 4046908.092634832,
+        "total_profit": 654311.2315817203,
+        "total_cost": 1034986.1916263921,
+        "profit_margin": 0.7442526076858492
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P953",
+        "total_quantity_sold": 15488,
+        "total_sales": 4043563.020065817,
+        "total_profit": 951413.9200432607,
+        "total_cost": 1444760.5921206286,
+        "profit_margin": 0.6427011066845911
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P951",
+        "total_quantity_sold": 15497,
+        "total_sales": 4034237.6489642384,
+        "total_profit": 250911.63874082477,
+        "total_cost": 370228.4821581024,
+        "profit_margin": 0.9082283904982256
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P370",
+        "total_quantity_sold": 15407,
+        "total_sales": 4030539.059335662,
+        "total_profit": 927278.8069602064,
+        "total_cost": 1395394.831543759,
+        "profit_margin": 0.6537944897688805
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P985",
+        "total_quantity_sold": 15435,
+        "total_sales": 4030183.4663125565,
+        "total_profit": 539136.5413925383,
+        "total_cost": 1142279.282451331,
+        "profit_margin": 0.7165689125571083
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P533",
+        "total_quantity_sold": 15486,
+        "total_sales": 4029430.673359653,
+        "total_profit": 654426.469405098,
+        "total_cost": 1351061.7031481278,
+        "profit_margin": 0.6647015887180803
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P849",
+        "total_quantity_sold": 15427,
+        "total_sales": 4026647.514811775,
+        "total_profit": 883464.136296964,
+        "total_cost": 1166319.7161034488,
+        "profit_margin": 0.7103496862307381
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P97",
+        "total_quantity_sold": 15409,
+        "total_sales": 4026457.0337427394,
+        "total_profit": 434654.2853401407,
+        "total_cost": 776493.675099075,
+        "profit_margin": 0.8071521268967086
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P988",
+        "total_quantity_sold": 15282,
+        "total_sales": 4024625.9043694464,
+        "total_profit": 406508.0980817332,
+        "total_cost": 1185457.031962558,
+        "profit_margin": 0.7054491373532299
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P168",
+        "total_quantity_sold": 15446,
+        "total_sales": 4022022.813570832,
+        "total_profit": 296110.778078799,
+        "total_cost": 530899.6053165665,
+        "profit_margin": 0.8680018413806004
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P283",
+        "total_quantity_sold": 15490,
+        "total_sales": 4020412.090620176,
+        "total_profit": 469251.93182564597,
+        "total_cost": 1032076.1293872632,
+        "profit_margin": 0.7432909597015817
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P608",
+        "total_quantity_sold": 15275,
+        "total_sales": 4020124.628620553,
+        "total_profit": 755162.0079074522,
+        "total_cost": 1040291.5192929119,
+        "profit_margin": 0.7412290375560141
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P191",
+        "total_quantity_sold": 15316,
+        "total_sales": 4018214.0324355164,
+        "total_profit": 459360.31108935317,
+        "total_cost": 813379.7814798813,
+        "profit_margin": 0.7975767903565664
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P965",
+        "total_quantity_sold": 15351,
+        "total_sales": 4015453.1290954268,
+        "total_profit": 588782.982698635,
+        "total_cost": 1396461.1005179752,
+        "profit_margin": 0.6522282652487192
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P413",
+        "total_quantity_sold": 15394,
+        "total_sales": 4013665.286997416,
+        "total_profit": 157864.98511268818,
+        "total_cost": 230537.40222121298,
+        "profit_margin": 0.9425618765550637
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P299",
+        "total_quantity_sold": 15424,
+        "total_sales": 4013414.026311994,
+        "total_profit": 21084.664779048606,
+        "total_cost": 39467.93011392363,
+        "profit_margin": 0.9901659958690603
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P132",
+        "total_quantity_sold": 15214,
+        "total_sales": 4012859.565291841,
+        "total_profit": 119056.39665083244,
+        "total_cost": 345209.33291864686,
+        "profit_margin": 0.9139742302709911
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P163",
+        "total_quantity_sold": 15239,
+        "total_sales": 4012407.351847785,
+        "total_profit": 849762.3868323899,
+        "total_cost": 1385372.1159787388,
+        "profit_margin": 0.6547279489604289
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P236",
+        "total_quantity_sold": 15583,
+        "total_sales": 4012299.338647303,
+        "total_profit": 400499.0153118414,
+        "total_cost": 1154073.8115063992,
+        "profit_margin": 0.7123659741958633
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P870",
+        "total_quantity_sold": 15566,
+        "total_sales": 4011964.301931649,
+        "total_profit": 277619.97345126496,
+        "total_cost": 427741.5387289765,
+        "profit_margin": 0.8933835132772665
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P728",
+        "total_quantity_sold": 15154,
+        "total_sales": 4009562.4521600734,
+        "total_profit": 90136.30874903267,
+        "total_cost": 222361.73510744964,
+        "profit_margin": 0.9445421444956776
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P259",
+        "total_quantity_sold": 15300,
+        "total_sales": 4007980.2419776455,
+        "total_profit": 406615.30786719447,
+        "total_cost": 544423.8007478872,
+        "profit_margin": 0.8641650487580114
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P63",
+        "total_quantity_sold": 15403,
+        "total_sales": 4007963.7697295956,
+        "total_profit": 704903.2566306477,
+        "total_cost": 1168870.680115851,
+        "profit_margin": 0.7083629625238077
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P587",
+        "total_quantity_sold": 15207,
+        "total_sales": 4006648.5165622714,
+        "total_profit": 688069.456538535,
+        "total_cost": 1197274.0464101422,
+        "profit_margin": 0.7011781688708222
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P45",
+        "total_quantity_sold": 15321,
+        "total_sales": 4006394.4015532774,
+        "total_profit": 396874.59268162854,
+        "total_cost": 757659.077801857,
+        "profit_margin": 0.8108875457922682
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P423",
+        "total_quantity_sold": 15293,
+        "total_sales": 4004287.9851141353,
+        "total_profit": 281226.63018797943,
+        "total_cost": 506703.1959746177,
+        "profit_margin": 0.8734598515745428
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P93",
+        "total_quantity_sold": 15348,
+        "total_sales": 4003838.0930395215,
+        "total_profit": 577276.072217289,
+        "total_cost": 919106.178086929,
+        "profit_margin": 0.7704437200683139
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P418",
+        "total_quantity_sold": 15276,
+        "total_sales": 4001282.482257833,
+        "total_profit": 93699.25091351198,
+        "total_cost": 182324.56716502734,
+        "profit_margin": 0.9544334677760252
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P841",
+        "total_quantity_sold": 15473,
+        "total_sales": 3999489.804855998,
+        "total_profit": 46285.32162502463,
+        "total_cost": 90810.8305113861,
+        "profit_margin": 0.9772943962999662
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P997",
+        "total_quantity_sold": 15216,
+        "total_sales": 3999341.9305361095,
+        "total_profit": 616204.818670474,
+        "total_cost": 1279764.966610579,
+        "profit_margin": 0.6800061137960696
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P590",
+        "total_quantity_sold": 15365,
+        "total_sales": 3998705.0680781496,
+        "total_profit": 441739.68110420584,
+        "total_cost": 907199.0208791234,
+        "profit_margin": 0.7731267984424919
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P955",
+        "total_quantity_sold": 15475,
+        "total_sales": 3998642.436472374,
+        "total_profit": 384038.7076701994,
+        "total_cost": 993340.4272130147,
+        "profit_margin": 0.7515805819113586
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P947",
+        "total_quantity_sold": 15071,
+        "total_sales": 3997879.154201236,
+        "total_profit": 356815.10006768786,
+        "total_cost": 757388.7129794193,
+        "profit_margin": 0.8105523744549644
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P371",
+        "total_quantity_sold": 15337,
+        "total_sales": 3997331.0187733136,
+        "total_profit": 525602.912839011,
+        "total_cost": 940714.2499744869,
+        "profit_margin": 0.7646644109390845
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P864",
+        "total_quantity_sold": 15358,
+        "total_sales": 3996496.402980316,
+        "total_profit": 586130.3018994809,
+        "total_cost": 1315208.6018958928,
+        "profit_margin": 0.670909599489418
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P68",
+        "total_quantity_sold": 15249,
+        "total_sales": 3995404.2306322157,
+        "total_profit": 368152.921563651,
+        "total_cost": 629515.2154012802,
+        "profit_margin": 0.8424401689884409
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P150",
+        "total_quantity_sold": 15184,
+        "total_sales": 3995380.36953396,
+        "total_profit": 930043.7294707096,
+        "total_cost": 1445499.2484356319,
+        "profit_margin": 0.6382073508049393
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P256",
+        "total_quantity_sold": 15219,
+        "total_sales": 3994371.7331607295,
+        "total_profit": 77463.72927400653,
+        "total_cost": 112424.49428704001,
+        "profit_margin": 0.9718542735134772
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P44",
+        "total_quantity_sold": 15202,
+        "total_sales": 3994174.9806395634,
+        "total_profit": 441749.82837451145,
+        "total_cost": 860298.6245773329,
+        "profit_margin": 0.7846116835773734
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P127",
+        "total_quantity_sold": 15264,
+        "total_sales": 3993074.7981952676,
+        "total_profit": 7863.059681691708,
+        "total_cost": 23385.89209788001,
+        "profit_margin": 0.994143387419527
+    },
+    {
+        "region": "RJ",
+        "product_name": "Produto_P865",
+        "total_quantity_sold": 15328,
+        "total_sales": 3992750.8137010275,
+        "total_profit": 710145.7852123176,
+        "total_cost": 1182119.5881034888,
+        "profit_margin": 0.7039335427477533
+    }
+]

@@ -1,5 +1,14 @@
 @charset "UTF-8";
 
+.historico-banner {
+  background: #FEF0F0; border-bottom: 0.5px solid #FBBCBC;
+  padding: 8px 20px; font-size: 11px; color: #B30000;
+  display: flex; align-items: center; gap: 8px;
+  svg { width: 12px; height: 12px; stroke: #EC0000; fill: none;
+        stroke-width: 2; stroke-linecap: round; }
+  .hb-dismiss { margin-left: auto; cursor: pointer; color: #CCC; }
+}
+
 .chat-container {
   display: flex;
   flex-direction: column;
@@ -83,6 +92,71 @@
         &.pulse {
           animation: pulse-green 2s infinite;
         }
+      }
+    }
+
+    .monitor-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #666;
+      background: #F5F5F5;
+      border: 1px solid #E8E8E8;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+
+      svg { transition: transform 0.2s; }
+
+      .monitor-count {
+        background: #EC0000;
+        color: white;
+        border-radius: 20px;
+        font-size: 9px;
+        font-weight: 700;
+        padding: 1px 5px;
+        min-width: 16px;
+        text-align: center;
+      }
+
+      .monitor-live {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: #E65100;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+
+        .live-dot {
+          width: 5px;
+          height: 5px;
+          background: #E65100;
+          border-radius: 50%;
+          animation: blink 0.8s infinite;
+        }
+      }
+
+      &:hover {
+        background: #EEE;
+        color: #333;
+        border-color: #DDD;
+      }
+
+      &.active {
+        background: #EC0000;
+        color: white;
+        border-color: #EC0000;
+        box-shadow: 0 4px 12px rgba(236, 0, 0, 0.2);
+      }
+
+      &.has-steps:not(.active) {
+        border-color: #EC0000;
+        color: #EC0000;
       }
     }
   }

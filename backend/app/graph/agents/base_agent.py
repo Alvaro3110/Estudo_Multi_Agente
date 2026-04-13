@@ -11,6 +11,8 @@ from app.graph.models import AgentInput, AgentOutput, GerarSQL, GerarRelatorioDo
 from utils.filesystem_manager import salvar_em_workspace
 from utils.helpers import sanitizar_relatorio
 from utils.llm_config import configurar_modelo
+from app.mlflow_utils import start_agent_span, log_agent_metrics, evaluate_report, save_good_example
+from mlflow.exceptions import MlflowException
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +28,7 @@ def workflow_agente_servico(
     Gera SQL, executa no Databricks e gera relatório interpretativo com retry.
     """
     
-    with mlflow.start_span(name=f"Agent_{nome_agente}", span_type="TOOL") as span:
+    with start_agent_span(nome_agente) as run:
         t_start = time.time()
         llm_name = str(state.get("modelo_selecionado", "GPT-4o Mini (OpenAI)"))
         llm = configurar_modelo(llm_name)
@@ -113,8 +115,37 @@ Dicionário Detalhado:\n{"\n".join(schemas_filtrados.values())}
                 relatorio = f"Erro na extração: {dados[0]['erro_sql']}"
                 rationale = "Falha crítica de SQL."
             else:
+                agent_key = nome_agente.replace("agente_", "")
+                if agent_key == "financeiro": agent_key = "financial"
+                elif agent_key == "vendas": agent_key = "sales"
+                elif agent_key == "logistica": agent_key = "logistics"
+                
+                # MLflow GenAI OSS Rationale integration
+                try:
+                    requested_version = state.get("prompt_version", "latest")
+                    prompt_obj = mlflow.genai.load_prompt(f"prompts:/{agent_key}_agent@{requested_version}")
+                    
+                    # Formatting logic com variaveis de state
+                    instrucoes_de_skill = prompt_obj.format(
+                        period=state.get("period", "2026-04"),
+                        context=state.get("query_enriquecida", "")[:100]
+                    )
+                    mlflow.log_param("genai_loaded_prompt", f"{agent_key}_agent")
+                    
+                except Exception as e:
+                    logger.warning(f"MLflow GenAI load falhou, tentando fallback local: {e}")
+                    try:
+                        with open(f"app/graph/skills/{nome_agente}.md", "r", encoding="utf-8") as f:
+                            instrucoes_de_skill = f.read()
+                    except FileNotFoundError:
+                        instrucoes_de_skill = f"Siga as regras padrão para o agente de {dominio_formal}."
+                
                 relator = dspy.ChainOfThought(GerarRelatorioDominio)
-                pred_rel = relator(query_usuario=query_usuario, json_extraido_do_banco=json.dumps(dados[:50], default=str))
+                pred_rel = relator(
+                    query_usuario=query_usuario, 
+                    json_extraido_do_banco=json.dumps(dados[:50], default=str),
+                    instrucoes_de_skill=instrucoes_de_skill
+                )
                 relatorio = sanitizar_relatorio(pred_rel.relatorio)
                 insights = getattr(pred_rel, 'insights', [])
                 incerteza = getattr(pred_rel, 'incerteza_escalar', False)
@@ -126,8 +157,31 @@ Dicionário Detalhado:\n{"\n".join(schemas_filtrados.values())}
         p_data = salvar_em_workspace(thread_id, f"{nome_agente}_data.json", dados)
         
         latency = time.time() - t_start
-        mlflow.log_metric(f"{nome_agente}_latency", latency)
         
+        # Cria payload para avaliar e logar
+        payload = {
+            "insights": insights,
+            "metrics": {"row_count": len(dados) if dados else 0},
+            "report": relatorio
+        }
+        score = evaluate_report(nome_agente, payload)
+        
+        # Loga a qualidade e a latência especificamente para esta run deste agente
+        log_agent_metrics(nome_agente, payload, score, token_count=1000, latency=latency)
+        
+        # Salva para dataset DSPy future optimization
+        save_good_example(nome_agente, {"query": query_usuario}, payload, score)
+        
+        # Registro legado para UI Customizada, mantendo estabilidade
+        agent_key = nome_agente.replace("agente_", "")
+        if agent_key == "financeiro": agent_key = "financial"
+        
+        try:
+            active_version = state.get("prompt_version", "latest")
+            mlflow.log_param("app_agent_version", active_version)
+        except Exception as e:
+            pass
+            
         return {
             "relatorios_agentes": {nome_agente: relatorio},
             "insights_agentes": {nome_agente: insights},

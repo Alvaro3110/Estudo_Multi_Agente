@@ -1,0 +1,109 @@
+<!-- report-table.component.html -->
+
+<div class="tbl-wrap" *ngIf="table">
+
+  <!-- TOOLBAR -->
+  <div class="tbl-bar">
+    <div class="tbl-bar-left">
+      <span class="tbl-bar-title">{{ title || 'Dados extraídos' }}</span>
+      <span class="tbl-bar-count" *ngIf="rowCount">
+        {{ rowCount | number }} registros
+      </span>
+    </div>
+    <div class="tbl-bar-right">
+      <button class="tbl-btn" (click)="exportCsv()" title="Exportar CSV">
+        <svg viewBox="0 0 24 24" width="10" height="10" fill="none"
+             stroke="#888" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="8 17 12 21 16 17"/>
+          <line x1="12" y1="12" x2="12" y2="21"/>
+          <path d="M20.88 18.09A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.29"/>
+        </svg>
+        CSV
+      </button>
+    </div>
+  </div>
+
+  <!-- SCROLL HORIZONTAL -->
+  <div class="tbl-scroll">
+    <table class="ct">
+      <thead>
+
+        <!-- LINHA DE GRUPOS (quando tabela tem agrupamento) -->
+        <tr class="gr" *ngIf="table.hasGroups">
+          <th
+            *ngFor="let g of columnGroups"
+            [attr.colspan]="g.span"
+            [class.g-empty]="g.empty"
+            [style.background]="g.empty ? '#F9F9F9' : (g.color + '15')"
+            [style.color]="g.empty ? 'transparent' : g.color"
+            [style.border-bottom-color]="g.empty ? '#EBEBEB' : g.color">
+            {{ g.label }}
+          </th>
+        </tr>
+
+        <!-- CABEÇALHOS DAS COLUNAS -->
+        <tr class="hr">
+          <th
+            *ngFor="let col of table.columns"
+            [class.r]="col.align === 'right'"
+            [class.sortable]="col.type !== 'text' && col.type !== 'region'"
+            [class.sort-active]="sortKey === col.key"
+            (click)="sortBy(col)"
+            [title]="(col.type !== 'text' && col.type !== 'region') ? 'Clique para ordenar' : ''">
+            {{ col.label }}
+            <svg
+              *ngIf="col.type !== 'text' && col.type !== 'region'"
+              class="sort-ico"
+              viewBox="0 0 24 24"
+              [class.sort-asc]="sortKey === col.key && sortAsc">
+              <polyline points="18 15 12 9 6 15"/>
+            </svg>
+          </th>
+        </tr>
+
+      </thead>
+      <tbody>
+
+        <!-- LINHAS DE DADOS -->
+        <tr *ngFor="let row of sortedRows">
+          <td
+            *ngFor="let col of table.columns"
+            [class.r]="col.align === 'right'">
+
+            <ng-container [ngSwitch]="col.type">
+
+              <!-- Região: pill colorida com dot -->
+              <span *ngSwitchCase="'region'"
+                    class="rpill"
+                    [ngClass]="getRegionPillClass(row[col.key])">
+                <span class="rpill-dot"></span>
+                {{ row[col.key] }}
+              </span>
+
+              <!-- Delta: badge verde/vermelho -->
+              <span *ngSwitchCase="'delta'"
+                    class="dbadge"
+                    [ngClass]="getDeltaClass(row[col.key])">
+                {{ row[col.key] }}
+              </span>
+
+              <!-- Outros: formatCell -->
+              <span *ngSwitchDefault>
+                {{ formatCell(row[col.key], col.type) }}
+              </span>
+
+            </ng-container>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RODAPÉ COM FONTE DOS DADOS -->
+  <div class="tbl-foot" *ngIf="table.source || source">
+    <span>Fonte: <b>{{ table.source || source }}</b></span>
+    <span>{{ table.rows.length }} linhas</span>
+  </div>
+
+</div>

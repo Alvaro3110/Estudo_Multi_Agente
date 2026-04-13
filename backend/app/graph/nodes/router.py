@@ -25,7 +25,16 @@ def node_router(state: GraphState) -> dict:
     
     with dspy.context(lm=llm):
         predictor = dspy.Predict(ClassificadorRouter)
-        resultado = predictor(query_enriquecida=state["query_enriquecida"])
+        
+        from app.core.prompt_cache import router_cache_manager
+        cache_hit = router_cache_manager.get("router", state["query_enriquecida"])
+        
+        if cache_hit:
+            resultado = cache_hit
+            logger.info("[NODE] Router utilizou cache. Bypass do LLM (Token Saving).")
+        else:
+            resultado = predictor(query_enriquecida=state["query_enriquecida"])
+            router_cache_manager.set("router", state["query_enriquecida"], resultado)
         
     # Extração e normalização dos domínios
     dominios_brutos = str(resultado.dominios).lower()

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ReportStructured } from './report.models';
 
 /**
  * Interface que representa um passo individual do agente.
@@ -13,6 +14,8 @@ export interface AgentStep {
   content: string;
   metadata?: Record<string, any>;
   pipeline_state?: any;
+  node_detail?: Record<string, any>;  // dados ricos de cada nó para o drawer
+  report?: ReportStructured;           // relatório estruturado (presente em 'complete')
 }
 
 @Injectable({
@@ -32,6 +35,7 @@ export class AgentService {
     department_id: string;
     group_context: string;
     model_name?: string;
+    context_from_history?: string;
   }): Observable<AgentStep> {
     return new Observable((observer) => {
       fetch(`${this.apiUrl}/api/agent/chat`, {

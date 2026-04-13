@@ -7,6 +7,8 @@ from app.api.routes.agent import router as agent_router
 from app.api.routes.health import router as health_router
 from app.api.routes.auth import router as auth_router
 from app.api.routes.user import router as user_router
+from app.api.routes.mlflow import router as mlflow_router
+from app.api.routes.prompts import router as prompts_router
 
 logging.basicConfig(
     level=getattr(logging, settings.LOG_LEVEL.upper(), logging.INFO),
@@ -25,6 +27,8 @@ app.include_router(agent_router, prefix="/api")
 app.include_router(health_router, prefix="/api")
 app.include_router(auth_router, prefix="/api")
 app.include_router(user_router, prefix="/api")
+app.include_router(mlflow_router, prefix="/api")
+app.include_router(prompts_router, prefix="/api")
 
 @app.middleware("http")
 async def log_requests(request, call_next):
@@ -54,6 +58,18 @@ async def startup():
     except Exception as e:
         logger.warning(f"Engine loading error: {e}. Certifique-se que o código do LangGraph existe.")
 
+    # MLflow Lifecycle
+    try:
+        from utils.mlflow_helper import inicializar_mlflow
+        inicializar_mlflow()
+        
+        # Opcional: Seed de prompts
+        # from app.prompts.financial_agent import init_financial_prompts
+        # init_financial_prompts()
+        # Movido para warmup background para não travar o startup da porta 4000
+    except Exception as e:
+        logger.warning(f"⚠️ Erro ao inicializar MLflow: {e}")
+
     # NOVO: warmup do cache em background
     import asyncio
     asyncio.create_task(_warmup_cache())
@@ -74,7 +90,14 @@ async def _warmup_cache():
         )
 
 def _warmup_sync():
-    """Executa o data_scanner e semantic_layer para popular o cache."""
+    """Executa o data_scanner e semantic_layer e prompts mlflow."""
+    try:
+        from app.prompts.genai_setup import setup_genai_prompts
+        setup_genai_prompts()
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).warning(f"Erro ao inicializar seed prompts no background: {e}")
+        
     from app.graph.nodes.scanner import node_data_scanner
     from app.graph.nodes.semantic_layer import node_categorical_semantic
     state = {}

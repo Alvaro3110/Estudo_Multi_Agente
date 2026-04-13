@@ -1,82 +1,128 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable, map } from 'rxjs';
 import { HistoricoService } from '../../core/historico.service';
-import { HistoricoItem } from '../../core/models';
-import { Pipe, PipeTransform } from '@angular/core';
-
-@Pipe({
-  name: 'dateRelative',
-  standalone: true
-})
-export class DateRelativePipe implements PipeTransform {
-  transform(value: string): string {
-    if (!value) return '';
-    const date = new Date(value);
-    const now = new Date();
-    const diff = now.getTime() - date.getTime();
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-    const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-    if (days === 0) return `hoje ${timeStr}`;
-    if (days === 1) return `ontem ${timeStr}`;
-    return `${date.toLocaleDateString([], { day: '2-digit', month: '2-digit' })} ${timeStr}`;
-  }
-}
+import { HistoricoItem, HistoricoMessage, UserGroup } from '../../core/models';
+import { DateRelativePipe } from '../../shared/pipes/date-relative.pipe';
+import { DeptIconComponent } from '../../shared/components/dept-icon/dept-icon.component';
+import { UserGroupsService } from '../../core/user-groups.service';
+import { AgentService, AgentStep } from '../../core/agent.service';
 
 @Component({
   selector: 'app-historico',
   standalone: true,
-  imports: [CommonModule, FormsModule, DateRelativePipe],
+  imports: [CommonModule, FormsModule, DateRelativePipe, DeptIconComponent],
   templateUrl: './historico.component.html',
   styleUrls: ['./historico.component.scss']
 })
 export class HistoricoComponent implements OnInit {
   private historicoService = inject(HistoricoService);
+  private userGroupsService = inject(UserGroupsService);
+  private agentService = inject(AgentService);
   private router = inject(Router);
 
-  items: HistoricoItem[] = [];
-  selectedItem?: HistoricoItem;
-  searchTerm: string = '';
+  @ViewChild('msgArea') msgArea?: ElementRef;
+
+  items$: Observable<HistoricoItem[]> = this.historicoService.getItems();
+  filteredItems$: Observable<HistoricoItem[]> = this.items$;
+  
+  selectedItem: HistoricoItem | null = null;
+  searchQuery = '';
+  showContinueBanner = false;
+  continuationMessages: HistoricoMessage[] = [];
+  isTyping = false;
+  inputText = '';
+  activeGroup?: UserGroup;
 
   ngOnInit() {
-    this.historicoService.getHistorico().subscribe(data => {
-      this.items = data;
-    });
+    this.userGroupsService.getGroups().pipe(
+      map(groups => groups.find(g => g.active))
+    ).subscribe(group => this.activeGroup = group);
   }
 
-  onSearch() {
-    this.historicoService.search(this.searchTerm).subscribe(data => {
-      this.items = data;
-    });
+  onSearchChange() {
+    this.filteredItems$ = this.items$.pipe(
+      map(items => items.filter(item => 
+        item.query.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        item.departmentName.toLowerCase().includes(this.searchQuery.toLowerCase())
+      ))
+    );
   }
 
-  selectItem(item: HistoricoItem) {
+  selectItem(item: HistoricoItem): void {
     this.selectedItem = item;
+    this.continuationMessages = [];
+    this.inputText = '';
+    this.showContinueBanner = item.canContinue;
+    setTimeout(() => this.scrollToBottom(), 100);
   }
 
-  getBadgeClass(name: string): string {
-    const map: any = {
-      'Financeiro': 'badge-fin',
-      'Logística': 'badge-log',
-      'RH': 'badge-rh',
-      'Tecnologia': 'badge-tec'
-    };
-    return map[name] || 'badge-def';
+  goToChat(): void {
+    this.router.navigate(['/chat']);
   }
 
-  exportPdf() {
-    alert("Funcionalidade em desenvolvimento");
-  }
-
-  reexecute(item: HistoricoItem) {
-    this.router.navigate(['/chat'], { 
-      queryParams: { 
-        query: item.query, 
-        dept: item.departmentId 
-      } 
+  reexecutar(): void {
+    this.router.navigate(['/chat'], {
+      queryParams: {
+        query: this.selectedItem?.query,
+        dept: this.selectedItem?.departmentId,
+        from: 'historico',
+      }
     });
+  }
+
+  exportar(): void {
+    alert('Exportação em desenvolvimento');
+  }
+
+  sendContinuation(): void {
+    if (!this.inputText.trim() || this.isTyping) return;
+
+    const userMsg: HistoricoMessage = {
+      id: Date.now().toString(),
+      role: 'user',
+      content: this.inputText,
+      timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+    };
+    this.continuationMessages.push(userMsg);
+    const queryTerm = this.inputText;
+    this.inputText = '';
+    this.isTyping = true;
+    this.scrollToBottom();
+
+    this.agentService.runAgent({
+      message: queryTerm,
+      department_id: this.selectedItem!.departmentId,
+      group_context: this.activeGroup?.name || '',
+      context_from_history: this.selectedItem!.id,
+    }).subscribe({
+      next: (step) => this.handleStep(step),
+      complete: () => { this.isTyping = false; this.scrollToBottom(); },
+      error: () => { this.isTyping = false; },
+    });
+  }
+
+  private handleStep(step: AgentStep): void {
+    if (step.type === 'complete' && step.content) {
+      this.continuationMessages.push({
+        id: Date.now().toString(),
+        role: 'agent',
+        agentName: 'Agente Principal',
+        agentColor: '#EC0000',
+        agentIconType: 'cpu',
+        content: step.content,
+        timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+        status: 'done',
+      });
+      this.scrollToBottom();
+    }
+  }
+
+  private scrollToBottom(): void {
+    if (this.msgArea?.nativeElement) {
+      this.msgArea.nativeElement.scrollTop = this.msgArea.nativeElement.scrollHeight;
+    }
   }
 }

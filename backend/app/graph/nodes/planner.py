@@ -26,9 +26,11 @@ def node_planner(state: GraphState) -> dict:
     
     llm = configurar_modelo(state.get("modelo_selecionado", "GPT-4o Mini"))
     
-    with dspy.context(lm=llm):
-        predictor = dspy.ChainOfThought(GerarPlano)
-        resultado = predictor(query_enriquecida=state["query_enriquecida"])
+    import mlflow
+    with mlflow.start_span(name="node_planner", span_type="TOOL") as span:
+        with dspy.context(lm=llm):
+            predictor = dspy.ChainOfThought(GerarPlano)
+            resultado = predictor(query_enriquecida=state["query_enriquecida"])
         
     # Persistência no Workspace da Thread
     thread_id = state.get("thread_id", "default")

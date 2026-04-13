@@ -13,14 +13,14 @@ def setup_teardown():
     # Setup: garante base limpa
     if WORKSPACE_ROOT.exists():
         shutil.rmtree(WORKSPACE_ROOT)
-    garantire_diretorios()
+    garantir_diretorios()
     yield
     # Teardown: limpa após teste
     if WORKSPACE_ROOT.exists():
         shutil.rmtree(WORKSPACE_ROOT)
 
 def test_garantir_diretorios():
-    garantire_diretorios()
+    garantir_diretorios()
     assert WORKSPACE_ROOT.exists()
     assert MEMORIES_ROOT.exists()
 

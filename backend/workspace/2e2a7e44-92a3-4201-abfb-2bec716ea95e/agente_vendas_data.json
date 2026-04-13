@@ -1,0 +1,452 @@
+[
+    {
+        "product_name": "Produto_P651",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15646,
+        "total_sales": 4120001.5981448973,
+        "total_profit": 3990979.2575514554,
+        "profit_margin": 96.86839100617009
+    },
+    {
+        "product_name": "Produto_P709",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15673,
+        "total_sales": 4105685.6693764576,
+        "total_profit": 3282086.2235718593,
+        "profit_margin": 79.94002677926191
+    },
+    {
+        "product_name": "Produto_P612",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15541,
+        "total_sales": 4080758.057314788,
+        "total_profit": 2685127.396239152,
+        "profit_margin": 65.79972050599868
+    },
+    {
+        "product_name": "Produto_P682",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15585,
+        "total_sales": 4079674.3467649436,
+        "total_profit": 2649064.9395703534,
+        "profit_margin": 64.93324501920063
+    },
+    {
+        "product_name": "Produto_P825",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15548,
+        "total_sales": 4071147.616501604,
+        "total_profit": 2723165.621122095,
+        "profit_margin": 66.88938544218523
+    },
+    {
+        "product_name": "Produto_P477",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15527,
+        "total_sales": 4070856.9444910074,
+        "total_profit": 3583171.528493281,
+        "profit_margin": 88.02007973633907
+    },
+    {
+        "product_name": "Produto_P862",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15511,
+        "total_sales": 4050770.1326944167,
+        "total_profit": 3922518.1248870497,
+        "profit_margin": 96.83388581415113
+    },
+    {
+        "product_name": "Produto_P961",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15273,
+        "total_sales": 4049465.686990815,
+        "total_profit": 2736067.0107215685,
+        "profit_margin": 67.56612408178616
+    },
+    {
+        "product_name": "Produto_P713",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15445,
+        "total_sales": 4047596.433104435,
+        "total_profit": 3855899.3014413803,
+        "profit_margin": 95.26392675674866
+    },
+    {
+        "product_name": "Produto_P136",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15502,
+        "total_sales": 4046908.092634832,
+        "total_profit": 3011921.90100844,
+        "profit_margin": 74.42526076858492
+    },
+    {
+        "product_name": "Produto_P953",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15488,
+        "total_sales": 4043563.020065817,
+        "total_profit": 2598802.4279451882,
+        "profit_margin": 64.27011066845911
+    },
+    {
+        "product_name": "Produto_P951",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15497,
+        "total_sales": 4034237.6489642384,
+        "total_profit": 3664009.166806136,
+        "profit_margin": 90.82283904982256
+    },
+    {
+        "product_name": "Produto_P370",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15407,
+        "total_sales": 4030539.059335662,
+        "total_profit": 2635144.227791903,
+        "profit_margin": 65.37944897688806
+    },
+    {
+        "product_name": "Produto_P985",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15435,
+        "total_sales": 4030183.4663125565,
+        "total_profit": 2887904.183861226,
+        "profit_margin": 71.65689125571083
+    },
+    {
+        "product_name": "Produto_P533",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15486,
+        "total_sales": 4029430.673359653,
+        "total_profit": 2678368.9702115254,
+        "profit_margin": 66.47015887180802
+    },
+    {
+        "product_name": "Produto_P849",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15427,
+        "total_sales": 4026647.514811775,
+        "total_profit": 2860327.798708326,
+        "profit_margin": 71.03496862307381
+    },
+    {
+        "product_name": "Produto_P97",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15409,
+        "total_sales": 4026457.0337427394,
+        "total_profit": 3249963.3586436645,
+        "profit_margin": 80.71521268967086
+    },
+    {
+        "product_name": "Produto_P988",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15282,
+        "total_sales": 4024625.9043694464,
+        "total_profit": 2839168.8724068888,
+        "profit_margin": 70.544913735323
+    },
+    {
+        "product_name": "Produto_P168",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15446,
+        "total_sales": 4022022.813570832,
+        "total_profit": 3491123.2082542656,
+        "profit_margin": 86.80018413806005
+    },
+    {
+        "product_name": "Produto_P283",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15490,
+        "total_sales": 4020412.090620176,
+        "total_profit": 2988335.9612329127,
+        "profit_margin": 74.32909597015816
+    },
+    {
+        "product_name": "Produto_P608",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15275,
+        "total_sales": 4020124.628620553,
+        "total_profit": 2979833.109327641,
+        "profit_margin": 74.12290375560141
+    },
+    {
+        "product_name": "Produto_P191",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15316,
+        "total_sales": 4018214.0324355164,
+        "total_profit": 3204834.250955635,
+        "profit_margin": 79.75767903565664
+    },
+    {
+        "product_name": "Produto_P965",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15351,
+        "total_sales": 4015453.1290954268,
+        "total_profit": 2618992.0285774516,
+        "profit_margin": 65.22282652487192
+    },
+    {
+        "product_name": "Produto_P413",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15394,
+        "total_sales": 4013665.286997416,
+        "total_profit": 3783127.884776203,
+        "profit_margin": 94.25618765550638
+    },
+    {
+        "product_name": "Produto_P299",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15424,
+        "total_sales": 4013414.026311994,
+        "total_profit": 3973946.0961980703,
+        "profit_margin": 99.01659958690603
+    },
+    {
+        "product_name": "Produto_P132",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15214,
+        "total_sales": 4012859.565291841,
+        "total_profit": 3667650.2323731943,
+        "profit_margin": 91.39742302709911
+    },
+    {
+        "product_name": "Produto_P163",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15239,
+        "total_sales": 4012407.351847785,
+        "total_profit": 2627035.2358690463,
+        "profit_margin": 65.47279489604288
+    },
+    {
+        "product_name": "Produto_P236",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15583,
+        "total_sales": 4012299.338647303,
+        "total_profit": 2858225.527140904,
+        "profit_margin": 71.23659741958633
+    },
+    {
+        "product_name": "Produto_P870",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15566,
+        "total_sales": 4011964.301931649,
+        "total_profit": 3584222.7632026724,
+        "profit_margin": 89.33835132772666
+    },
+    {
+        "product_name": "Produto_P728",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15154,
+        "total_sales": 4009562.4521600734,
+        "total_profit": 3787200.7170526236,
+        "profit_margin": 94.45421444956776
+    },
+    {
+        "product_name": "Produto_P259",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15300,
+        "total_sales": 4007980.2419776455,
+        "total_profit": 3463556.4412297583,
+        "profit_margin": 86.41650487580114
+    },
+    {
+        "product_name": "Produto_P63",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15403,
+        "total_sales": 4007963.7697295956,
+        "total_profit": 2839093.0896137445,
+        "profit_margin": 70.83629625238078
+    },
+    {
+        "product_name": "Produto_P587",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15207,
+        "total_sales": 4006648.5165622714,
+        "total_profit": 2809374.4701521294,
+        "profit_margin": 70.11781688708221
+    },
+    {
+        "product_name": "Produto_P45",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15321,
+        "total_sales": 4006394.4015532774,
+        "total_profit": 3248735.3237514202,
+        "profit_margin": 81.08875457922682
+    },
+    {
+        "product_name": "Produto_P423",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15293,
+        "total_sales": 4004287.9851141353,
+        "total_profit": 3497584.7891395176,
+        "profit_margin": 87.34598515745428
+    },
+    {
+        "product_name": "Produto_P93",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15348,
+        "total_sales": 4003838.0930395215,
+        "total_profit": 3084731.9149525925,
+        "profit_margin": 77.04437200683138
+    },
+    {
+        "product_name": "Produto_P418",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15276,
+        "total_sales": 4001282.482257833,
+        "total_profit": 3818957.9150928054,
+        "profit_margin": 95.44334677760253
+    },
+    {
+        "product_name": "Produto_P841",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15473,
+        "total_sales": 3999489.804855998,
+        "total_profit": 3908678.974344612,
+        "profit_margin": 97.72943962999662
+    },
+    {
+        "product_name": "Produto_P997",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15216,
+        "total_sales": 3999341.9305361095,
+        "total_profit": 2719576.96392553,
+        "profit_margin": 68.00061137960695
+    },
+    {
+        "product_name": "Produto_P590",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15365,
+        "total_sales": 3998705.0680781496,
+        "total_profit": 3091506.047199026,
+        "profit_margin": 77.31267984424919
+    },
+    {
+        "product_name": "Produto_P955",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15475,
+        "total_sales": 3998642.436472374,
+        "total_profit": 3005302.0092593594,
+        "profit_margin": 75.15805819113585
+    },
+    {
+        "product_name": "Produto_P947",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15071,
+        "total_sales": 3997879.154201236,
+        "total_profit": 3240490.441221817,
+        "profit_margin": 81.05523744549645
+    },
+    {
+        "product_name": "Produto_P371",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15337,
+        "total_sales": 3997331.0187733136,
+        "total_profit": 3056616.7687988267,
+        "profit_margin": 76.46644109390846
+    },
+    {
+        "product_name": "Produto_P864",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15358,
+        "total_sales": 3996496.402980316,
+        "total_profit": 2681287.8010844234,
+        "profit_margin": 67.0909599489418
+    },
+    {
+        "product_name": "Produto_P68",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15249,
+        "total_sales": 3995404.2306322157,
+        "total_profit": 3365889.0152309355,
+        "profit_margin": 84.24401689884408
+    },
+    {
+        "product_name": "Produto_P150",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15184,
+        "total_sales": 3995380.36953396,
+        "total_profit": 2549881.121098328,
+        "profit_margin": 63.82073508049393
+    },
+    {
+        "product_name": "Produto_P256",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15219,
+        "total_sales": 3994371.7331607295,
+        "total_profit": 3881947.2388736894,
+        "profit_margin": 97.18542735134773
+    },
+    {
+        "product_name": "Produto_P44",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15202,
+        "total_sales": 3994174.9806395634,
+        "total_profit": 3133876.3560622307,
+        "profit_margin": 78.46116835773735
+    },
+    {
+        "product_name": "Produto_P127",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15264,
+        "total_sales": 3993074.7981952676,
+        "total_profit": 3969688.9060973874,
+        "profit_margin": 99.4143387419527
+    },
+    {
+        "product_name": "Produto_P865",
+        "category": "eletronicos",
+        "region": "RJ",
+        "total_quantity_sold": 15328,
+        "total_sales": 3992750.8137010275,
+        "total_profit": 2810631.225597539,
+        "profit_margin": 70.39335427477533
+    }
+]

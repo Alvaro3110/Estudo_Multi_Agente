@@ -1,0 +1,6 @@
+[
+    {
+        "erro_sql": "[UNRESOLVED_COLUMN.WITH_SUGGESTION] A column, variable, or function parameter with name `margin` cannot be resolved. Did you mean one of the following? [`region`, `channel`, `quantity`, `customer_id`, `product_id`]. SQLSTATE: 42703; line 7 pos 8",
+        "query_tentada": "SELECT \n    region,\n    product_id,\n    SUM(quantity) AS total_quantity,\n    SUM(total_amount) AS total_sales,\n    AVG(unit_price) AS average_price,\n    SUM(margin) AS total_margin\nFROM \n    estudo_multi_agente.bronze.sales_transactions\nWHERE \n    region IN ('SP', 'RJ')\nGROUP BY \n    region, product_id\nORDER BY \n    region, total_sales DESC;"
+    }
+]

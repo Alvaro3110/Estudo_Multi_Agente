@@ -1,59 +1,72 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SidebarComponent } from './sidebar.component';
 import { UserGroupsService } from '../../../core/user-groups.service';
 import { AuthService } from '../../../core/auth.service';
 import { of } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing';
+import { DeptIconComponent } from '../dept-icon/dept-icon.component';
+import { UserGroup } from '../../../core/models';
 
-describe('SidebarComponent', () => {
+describe('SidebarComponent — Meus Grupos enriquecidos', () => {
   let component: SidebarComponent;
   let fixture: ComponentFixture<SidebarComponent>;
-  let userGroupsService: jasmine.SpyObj<UserGroupsService>;
+  let mockUserGroupsService: any;
+  let mockAuthService: any;
+
+  const mGroups: UserGroup[] = [
+    { id: '1', name: 'G1', iconType: 'smartphone', colorVariant: 'red', departmentCount: 1, alertCount: 2, alertSeverity: 'critical', locked: false, active: true },
+    { id: '2', name: 'G2', iconType: 'home', colorVariant: 'blue', departmentCount: 2, alertCount: 1, alertSeverity: 'warning', locked: false, active: false },
+    { id: '3', name: 'G3', iconType: 'leaf', colorVariant: 'green', departmentCount: 3, alertCount: 0, alertSeverity: 'none', locked: true, active: false },
+  ];
 
   beforeEach(async () => {
-    const groupsSpy = jasmine.createSpyObj('UserGroupsService', ['getGroups', 'getActiveGroupId', 'isLoading', 'loadGroups', 'setActiveGroup']);
-    const authSpy = jasmine.createSpyObj('AuthService', ['getCurrentUser', 'logout']);
-
-    groupsSpy.getGroups.and.returnValue(of([]));
-    groupsSpy.getActiveGroupId.and.returnValue(of(null));
-    groupsSpy.isLoading.and.returnValue(of(false));
-    authSpy.getCurrentUser.and.returnValue(of(null));
+    mockUserGroupsService = {
+      getGroups: () => of(mGroups),
+      loadGroups: jasmine.createSpy('loadGroups'),
+      setActiveGroup: jasmine.createSpy('setActiveGroup')
+    };
+    mockAuthService = {
+      getCurrentUser: () => of({ nome: 'Test', perfil: 'Admin' })
+    };
 
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, HttpClientTestingModule, SidebarComponent],
+      imports: [SidebarComponent, RouterTestingModule, DeptIconComponent],
       providers: [
-        { provide: UserGroupsService, useValue: groupsSpy },
-        { provide: AuthService, useValue: authSpy }
+        { provide: UserGroupsService, useValue: mockUserGroupsService },
+        { provide: AuthService, useValue: mockAuthService }
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(SidebarComponent);
     component = fixture.componentInstance;
-    userGroupsService = TestBed.inject(UserGroupsService) as jasmine.SpyObj<UserGroupsService>;
     fixture.detectChanges();
   });
 
-  it('estado inicial deve ser expandido', () => {
-    expect(component.isExpanded).toBeTrue();
+  it('deve renderizar os grupos fornecidos', () => {
+    const items = fixture.nativeElement.querySelectorAll('.grupo-item');
+    expect(items.length).toBe(3);
   });
 
-  it('toggle() deve alternar isExpanded e salvar no localStorage', () => {
-    spyOn(localStorage, 'setItem');
-    component.toggle();
-    expect(component.isExpanded).toBeFalse();
-    expect(localStorage.setItem).toHaveBeenCalledWith('sidebar_expanded', 'false');
+  it('grupo com alertSeverity=critical deve ter badge vermelho', () => {
+    const alert = fixture.nativeElement.querySelector('.ga-critical');
+    expect(alert).toBeTruthy();
+    expect(alert.textContent.trim()).toBe('2');
   });
 
-  it('onGroupClick deve chamar setActiveGroup se o grupo não estiver bloqueado', () => {
-    const mockGroup = { id: '1', name: 'G1', locked: false } as any;
-    component.onGroupClick(mockGroup);
-    expect(userGroupsService.setActiveGroup).toHaveBeenCalledWith('1');
+  it('grupo com alertSeverity=warning deve ter badge âmbar', () => {
+    const alert = fixture.nativeElement.querySelector('.ga-warning');
+    expect(alert).toBeTruthy();
+    expect(alert.textContent.trim()).toBe('1');
   });
 
-  it('onGroupClick não deve chamar setActiveGroup se o grupo estiver bloqueado', () => {
-    const mockGroup = { id: '1', name: 'G1', locked: true } as any;
-    component.onGroupClick(mockGroup);
-    expect(userGroupsService.setActiveGroup).not.toHaveBeenCalled();
+  it('grupo locked deve ter ícone de cadeado e classe locked', () => {
+    const lockedItem = fixture.nativeElement.querySelectorAll('.grupo-item')[2];
+    expect(lockedItem.classList.contains('grupo-locked')).toBe(true);
+    expect(lockedItem.querySelector('.g-lock')).toBeTruthy();
+  });
+
+  it('cada grupo tem classe gc-{colorVariant} no ícone', () => {
+    const ico = fixture.nativeElement.querySelector('.g-ico');
+    expect(ico.classList.contains('gc-red')).toBe(true);
   });
 });

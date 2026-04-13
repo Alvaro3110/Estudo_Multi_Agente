@@ -1,0 +1,20 @@
+[
+  {
+    "query": "Qual o total de vendas no Rio de Janeiro (RJ)?",
+    "expected_tables": ["sales_transactions"],
+    "expected_columns": ["total_revenue", "region"],
+    "department_id": "vendas"
+  },
+  {
+    "query": "Qual o custo total em São Paulo (SP) no último mês?",
+    "expected_tables": ["sales_transactions"],
+    "expected_columns": ["total_cost", "region"],
+    "department_id": "vendas"
+  },
+  {
+    "query": "Existe algum alerta de logística para a região Sul?",
+    "expected_tables": ["logistics_alerts"],
+    "expected_columns": ["alert_type", "region"],
+    "department_id": "logistica"
+  }
+]

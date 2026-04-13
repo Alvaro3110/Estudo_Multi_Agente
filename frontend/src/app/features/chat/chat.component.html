@@ -1,5 +1,11 @@
 <div class="chat-container">
-  <!-- PARTE 1 — HEADER DO CHAT -->
+  <div class="historico-banner" *ngIf="showHistoricoReturnBanner">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+    <span>Reexecutando análise do Histórico</span>
+    <span class="hb-dismiss" (click)="showHistoricoReturnBanner = false">✕</span>
+  </div>
+
+  <!-- HEADER DO CHAT -->
   <header class="chat-header">
     <div class="header-left">
       <div class="agent-avatar-header">
@@ -19,6 +25,28 @@
         <span class="dot pulse"></span>
         monitorado no painel
       </div>
+
+      <!-- BOTÃO DE MONITORAMENTO DOS AGENTES — Apenas perfil plataforma/administrator -->
+      <button 
+        *ngIf="hasMonitorAccess"
+        class="monitor-btn" 
+        [class.active]="drawerOpen"
+        [class.has-steps]="drawerSteps.length > 0"
+        (click)="toggleDrawer()"
+        title="Monitorar Agentes (Modo Plataforma)"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+          <line x1="8" y1="21" x2="16" y2="21"></line>
+          <line x1="12" y1="17" x2="12" y2="21"></line>
+        </svg>
+        Monitor
+        <span class="monitor-count" *ngIf="drawerSteps.length > 0">{{ drawerSteps.length }}</span>
+        <span class="monitor-live" *ngIf="isStreaming">
+          <span class="live-dot"></span>
+          AO VIVO
+        </span>
+      </button>
     </div>
   </header>
 
@@ -52,23 +80,33 @@
           (decision)="onHitlDecision($event)">
         </app-hitl-card>
 
+        <!-- Relatório final: usa ReportCard quando há relatório estruturado -->
         <div class="message-row assistant" *ngIf="msg.type === 'stream_final'">
-          <div class="agent-avatar-msg">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-              <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-          </div>
-          <div class="bubble-wrapper">
-            <div class="agent-name">Agente Principal</div>
-            <div class="msg-agent-bubble streaming-text agent-bubble-content" [innerHTML]="(msg.content || '') | markdown">
+          <ng-container *ngIf="msg.step?.report; else markdownFallback">
+            <app-report-card
+              [step]="msg.step!"
+              agentName="Agente Principal"
+              timestamp="agora">
+            </app-report-card>
+          </ng-container>
+          <ng-template #markdownFallback>
+            <div class="agent-avatar-msg">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
             </div>
-          </div>
+            <div class="bubble-wrapper">
+              <div class="agent-name">Agente Principal</div>
+              <div class="msg-agent-bubble streaming-text agent-bubble-content" [innerHTML]="(msg.content || '') | markdown">
+              </div>
+            </div>
+          </ng-template>
         </div>
 
       </ng-container>
 
-      <!-- TRACKER: único, atualizado in-place, visível durante execução -->
+      <!-- Pipeline Tracker (inline, durante streaming) -->
       <app-pipeline-tracker
         *ngIf="pipelineVisible && currentPipeline"
         [state]="currentPipeline">
@@ -106,3 +144,12 @@
     </div>
   </footer>
 </div>
+
+<!-- AGENT DRAWER (slide-in from right) -->
+<app-agent-drawer
+  [open]="drawerOpen"
+  [steps]="drawerSteps"
+  [activeNode]="drawerActiveNode"
+  [sessionId]="currentSessionId"
+  (close)="drawerOpen = false">
+</app-agent-drawer>
